@@ -217,3 +217,7 @@ pip-log.txt
 
 # Visual paradigm
 *.vpp~*
+.vpprefdata
+tmp
+teamworkUser.xml
+*.lock
