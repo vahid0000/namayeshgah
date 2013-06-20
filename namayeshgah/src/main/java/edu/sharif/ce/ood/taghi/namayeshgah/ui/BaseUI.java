@@ -76,6 +76,9 @@ public class BaseUI extends JFrame {
 		JButton teamElectionButton = new JButton("<html><div style=\"text-align:center;\">\r\nرای‌گیری\r\n<br>\r\nتیم اجرایی\r\n</div></html>");
 		teamElectionButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(teamElectionButton);
+		
+		JButton button_1 = new JButton("اطلاع رسانی");
+		panel.add(button_1);
 	}
 
 }

@@ -39,6 +39,7 @@ public class SelectShowPlace extends BaseUI {
 	 */
 	public SelectShowPlace() {
 		super();
+		setTitle("انتخاب نمایشگاه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

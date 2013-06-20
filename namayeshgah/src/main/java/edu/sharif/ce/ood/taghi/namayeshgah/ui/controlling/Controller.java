@@ -1,4 +1,4 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.ui;
+package edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -16,11 +16,15 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
 import com.jgoodies.forms.factories.FormFactory;
+
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelectList;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 
-public class Election extends BaseUI {
+public class Controller extends BaseUI {
 
 //	private JPanel contentPane;
 
@@ -31,7 +35,7 @@ public class Election extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Election frame = new Election();
+					Controller frame = new Controller();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,22 +47,32 @@ public class Election extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Election() {
+	public Controller() {
 		super();
-		setTitle("رای گیری");
+		setTitle("فراخوان و اطلاع رسانی");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[grow 50][grow][grow 50]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][grow][]", "[][50px:n:100px][grow][]"));
 		
-		JButton startElectionButton = new JButton("انجماد و رای گیری");
-		panel.add(startElectionButton, "cell 1 2,alignx center");
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, "cell 1 1,grow");
+		panel_1.setLayout(new MigLayout("", "[grow][grow][grow]", "[grow]"));
 		
-		JButton acceptButton = new JButton("تایید نهای");
-		panel.add(acceptButton, "cell 1 4,alignx center");
+		JComboBox comboBox = new JComboBox();
+		panel_1.add(comboBox, "cell 0 0,growx");
 		
-		JButton failedButton = new JButton("عدم تایید");
-		panel.add(failedButton, "cell 1 6,alignx center");
+		JLabel label_1 = new JLabel("نمایشگاه");
+		panel_1.add(label_1, "cell 1 0");
+		
+		JLabel label = new JLabel("غرفه های دارای مشکل");
+		panel_1.add(label, "cell 2 0,alignx right");
+		
+		SelectList selectList = new SelectList();
+		panel.add(selectList, "cell 1 2,grow");
+		
+		JButton acceptButton = new JButton("تایید");
+		panel.add(acceptButton, "cell 1 3,alignx center");
 	}
 
 }

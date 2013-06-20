@@ -1,4 +1,4 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.ui;
+package edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -16,11 +16,16 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
 import com.jgoodies.forms.factories.FormFactory;
+
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
-public class Election extends BaseUI {
+public class Penalty extends BaseUI {
+	private JTextField textField;
 
 //	private JPanel contentPane;
 
@@ -31,7 +36,7 @@ public class Election extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Election frame = new Election();
+					Penalty frame = new Penalty();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,22 +48,35 @@ public class Election extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Election() {
+	public Penalty() {
 		super();
-		setTitle("رای گیری");
+		setTitle("فراخوان و اطلاع رسانی");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[grow 50][grow][grow 50]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][grow][][]"));
 		
-		JButton startElectionButton = new JButton("انجماد و رای گیری");
-		panel.add(startElectionButton, "cell 1 2,alignx center");
+		JComboBox comboBox = new JComboBox();
+		panel.add(comboBox, "flowx,cell 1 0,alignx center");
 		
-		JButton acceptButton = new JButton("تایید نهای");
-		panel.add(acceptButton, "cell 1 4,alignx center");
+		JLabel label_2 = new JLabel("غرفه ها");
+		panel.add(label_2, "cell 1 1,alignx center");
 		
-		JButton failedButton = new JButton("عدم تایید");
-		panel.add(failedButton, "cell 1 6,alignx center");
+		JList list = new JList();
+		panel.add(list, "cell 1 2,grow");
+		
+		JButton button = new JButton("ثبت جریمه");
+		panel.add(button, "cell 1 4,alignx center");
+		
+		textField = new JTextField();
+		panel.add(textField, "flowx,cell 1 3,alignx center");
+		textField.setColumns(10);
+		
+		JLabel label = new JLabel("مقدار جریمه");
+		panel.add(label, "cell 1 3");
+		
+		JLabel label_1 = new JLabel("نمایشگاه");
+		panel.add(label_1, "cell 1 0");
 	}
 
 }

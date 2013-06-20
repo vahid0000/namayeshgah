@@ -39,6 +39,7 @@ public class Definition extends BaseUI {
 	 */
 	public Definition() {
 		super();
+		setTitle("تعریف نمایشگاه جدید");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

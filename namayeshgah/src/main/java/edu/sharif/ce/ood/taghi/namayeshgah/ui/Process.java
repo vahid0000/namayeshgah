@@ -45,7 +45,7 @@ public class Process extends BaseUI {
 	 */
 	public Process() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("فرآیند ها");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

@@ -37,6 +37,7 @@ public class AssignRoles extends BaseUI {
 	 */
 	public AssignRoles() {
 		super();
+		setTitle("تیم اجرایی");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
