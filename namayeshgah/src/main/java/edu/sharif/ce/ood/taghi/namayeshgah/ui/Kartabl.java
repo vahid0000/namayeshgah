@@ -1,4 +1,4 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.ui.report;
+package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -16,9 +16,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
 import com.jgoodies.forms.factories.FormFactory;
-
-import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
-
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
@@ -32,7 +29,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ReportShowPlace extends BaseUI {
+public class Kartabl extends BaseUI {
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -45,7 +42,7 @@ public class ReportShowPlace extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReportShowPlace frame = new ReportShowPlace();
+					Kartabl frame = new Kartabl();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,51 +54,53 @@ public class ReportShowPlace extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public ReportShowPlace() {
+	public Kartabl() {
 		super();
-		setTitle("گزارش");
+		setTitle("کارتابل");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][][][][][][grow]"));
+		panel.setLayout(new GridLayout(10, 0, 0, 0));
 		
-		textField = new JTextField();
-		panel.add(textField, "cell 1 0,alignx right");
-		textField.setColumns(10);
+		JPanel panel_2 = new JPanel();
+		panel.add(panel_2);
+		panel_2.setLayout(new MigLayout("", "[][][grow][]", "[][]"));
 		
-		JLabel label = new JLabel("از");
-		panel.add(label, "cell 2 0");
+		JLabel label_2 = new JLabel("شرح");
+		panel_2.add(label_2, "cell 3 0");
+		
+		JButton button_3 = new JButton("تایید");
+		panel_2.add(button_3, "cell 0 1");
+		
+		JButton button_2 = new JButton("رد");
+		panel_2.add(button_2, "cell 1 1");
 		
 		textField_1 = new JTextField();
-		panel.add(textField_1, "cell 1 1,alignx right");
 		textField_1.setColumns(10);
+		panel_2.add(textField_1, "cell 2 1,growx");
 		
-		JLabel label_1 = new JLabel("تا");
-		panel.add(label_1, "cell 2 1");
+		JLabel label_3 = new JLabel("پاسخ");
+		panel_2.add(label_3, "cell 3 1");
 		
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "cell 1 2,alignx right");
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1);
+		panel_1.setLayout(new MigLayout("", "[][][grow][]", "[][]"));
 		
-		JLabel label_3 = new JLabel("نمایشگاه");
-		panel.add(label_3, "cell 2 2");
+		JLabel label_1 = new JLabel("شرح");
+		panel_1.add(label_1, "cell 3 0");
 		
-		JComboBox comboBox_1 = new JComboBox();
-		panel.add(comboBox_1, "cell 1 3,alignx right");
+		JButton button = new JButton("تایید");
+		panel_1.add(button, "cell 0 1");
 		
-		JLabel label_4 = new JLabel("سالن");
-		panel.add(label_4, "cell 2 3");
+		JButton button_1 = new JButton("رد");
+		panel_1.add(button_1, "cell 1 1");
 		
-		JComboBox comboBox_2 = new JComboBox();
-		panel.add(comboBox_2, "cell 1 4,alignx right");
+		textField = new JTextField();
+		panel_1.add(textField, "flowx,cell 2 1,growx");
+		textField.setColumns(10);
 		
-		JLabel label_5 = new JLabel("غرفه");
-		panel.add(label_5, "cell 2 4");
-		
-		JLabel label_2 = new JLabel("نتیجه");
-		panel.add(label_2, "cell 1 5,alignx center");
-		
-		JList list = new JList();
-		panel.add(list, "cell 1 6,grow");
+		JLabel label = new JLabel("پاسخ");
+		panel_1.add(label, "cell 3 1");
 	}
 
 }
