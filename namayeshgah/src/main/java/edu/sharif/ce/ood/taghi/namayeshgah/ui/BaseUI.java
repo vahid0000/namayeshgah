@@ -58,7 +58,7 @@ public class BaseUI extends JFrame {
 		
 		JButton EditProcessButton = new JButton("فرآیندها");
 		EditProcessButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		panel.setLayout(new GridLayout(15, 1, 10, 5));
+		panel.setLayout(new GridLayout(20, 1, 10, 5));
 		
 		JButton newShowPlace = new JButton("تعریف نمایشگاه");
 		newShowPlace.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -101,6 +101,22 @@ public class BaseUI extends JFrame {
 		
 		JButton button_7 = new JButton("مالی");
 		panel.add(button_7);
+		
+		JButton button_8 = new JButton("شرکت در نمایشگاه");
+		panel.add(button_8);
+		
+		JButton button_9 = new JButton("درخواست غرفه و سالن");
+		button_9.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		panel.add(button_9);
+		
+		JButton button_10 = new JButton("تخصیص سالن و غرفه");
+		panel.add(button_10);
+		
+		JButton button_11 = new JButton("نقشه");
+		panel.add(button_11);
+		
+		JButton button_12 = new JButton("پست");
+		panel.add(button_12);
 	}
 
 }
