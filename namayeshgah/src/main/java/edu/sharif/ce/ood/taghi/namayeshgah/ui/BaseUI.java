@@ -57,16 +57,20 @@ public class BaseUI extends JFrame {
 		contentPane.add(panel, BorderLayout.EAST);
 		
 		JButton EditProcessButton = new JButton("فرآیندها");
-		panel.setLayout(new GridLayout(10, 1, 10, 5));
+		EditProcessButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panel.setLayout(new GridLayout(15, 1, 10, 5));
 		
 		JButton newShowPlace = new JButton("تعریف نمایشگاه");
+		newShowPlace.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(newShowPlace);
 		panel.add(EditProcessButton);
 		
 		JButton PropetiesButton = new JButton("ویژگی ها");
+		PropetiesButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(PropetiesButton);
 		
 		JButton button = new JButton("تیم اجرایی");
+		button.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(button);
 		
 		JButton ProcessElectionButton = new JButton("<html><div style=\"text-align:center;\">\r\nرای‌گیری\r\n<br>\r\nمشخصات و فرآیند\r\n</div></html>");
@@ -76,6 +80,27 @@ public class BaseUI extends JFrame {
 		JButton teamElectionButton = new JButton("<html><div style=\"text-align:center;\">\r\nرای‌گیری\r\n<br>\r\nتیم اجرایی\r\n</div></html>");
 		teamElectionButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel.add(teamElectionButton);
+		
+		JButton button_1 = new JButton("اطلاع رسانی");
+		panel.add(button_1);
+		
+		JButton button_2 = new JButton("اجرایی");
+		panel.add(button_2);
+		
+		JButton button_4 = new JButton("نظرسنجی");
+		panel.add(button_4);
+		
+		JButton button_3 = new JButton("پیغام ها");
+		panel.add(button_3);
+		
+		JButton button_5 = new JButton("بازرسی");
+		panel.add(button_5);
+		
+		JButton button_6 = new JButton("انبار");
+		panel.add(button_6);
+		
+		JButton button_7 = new JButton("مالی");
+		panel.add(button_7);
 	}
 
 }
