@@ -19,10 +19,19 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-public class Election extends BaseUI {
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-//	private JPanel contentPane;
+public class Appropriation extends BaseUI {
+
+	// private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -31,7 +40,7 @@ public class Election extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Election frame = new Election();
+					Appropriation frame = new Appropriation();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,22 +52,28 @@ public class Election extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Election() {
+	public Appropriation() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("درخواست سالن یا غرفه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[grow 50][grow][grow 50]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][grow][]", "[][grow][]"));
 		
-		JButton startElectionButton = new JButton("انجماد و رای گیری");
-		panel.add(startElectionButton, "cell 1 2,alignx center");
+		JLabel label = new JLabel("لیست درخواست های تخصیص غرفه یا سالن");
+		panel.add(label, "cell 1 0,alignx center");
 		
-		JButton acceptButton = new JButton("تایید نهای");
-		panel.add(acceptButton, "cell 1 4,alignx center");
+		JList list = new JList();
+		panel.add(list, "cell 1 1,grow");
 		
-		JButton failedButton = new JButton("عدم تایید");
-		panel.add(failedButton, "cell 1 6,alignx center");
+		JButton button = new JButton("تایید");
+		panel.add(button, "flowx,cell 1 2,alignx center");
+		
+		JButton button_1 = new JButton("رد");
+		panel.add(button_1, "cell 1 2");
+		
+		JButton button_2 = new JButton("تجدید نظر");
+		panel.add(button_2, "cell 1 2");
 	}
 
 }

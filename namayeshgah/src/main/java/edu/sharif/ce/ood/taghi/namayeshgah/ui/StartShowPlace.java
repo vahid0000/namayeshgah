@@ -19,10 +19,19 @@ import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-public class Election extends BaseUI {
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-//	private JPanel contentPane;
+public class StartShowPlace extends BaseUI {
+
+	// private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -31,7 +40,7 @@ public class Election extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Election frame = new Election();
+					StartShowPlace frame = new StartShowPlace();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,22 +52,25 @@ public class Election extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Election() {
+	public StartShowPlace() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("اجرای نمایشگاه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[grow 50][grow][grow 50]", "[][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][]"));
 		
-		JButton startElectionButton = new JButton("انجماد و رای گیری");
-		panel.add(startElectionButton, "cell 1 2,alignx center");
+		JComboBox comboBox = new JComboBox();
+		panel.add(comboBox, "cell 1 0,alignx right");
 		
-		JButton acceptButton = new JButton("تایید نهای");
-		panel.add(acceptButton, "cell 1 4,alignx center");
+		JLabel label = new JLabel("نمایشگاه");
+		panel.add(label, "cell 2 0");
 		
-		JButton failedButton = new JButton("عدم تایید");
-		panel.add(failedButton, "cell 1 6,alignx center");
+		JButton button_1 = new JButton("خاتمه");
+		panel.add(button_1, "flowx,cell 1 1");
+		
+		JButton button = new JButton("اجرا");
+		panel.add(button, "cell 1 1,alignx right");
 	}
 
 }

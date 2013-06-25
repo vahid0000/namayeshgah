@@ -1,4 +1,4 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.ui;
+package edu.sharif.ce.ood.taghi.namayeshgah.ui.processes;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -16,11 +16,15 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
 import com.jgoodies.forms.factories.FormFactory;
+
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelectList;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 
-public class Process extends BaseUI {
+public class ManageProcess extends BaseUI {
 
 //	private JPanel contentPane;
 
@@ -31,7 +35,7 @@ public class Process extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Process frame = new Process();
+					ManageProcess frame = new ManageProcess();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +47,7 @@ public class Process extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Process() {
+	public ManageProcess() {
 		super();
 		setTitle("ویژگی ها");
 		
