@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class Penalty extends BaseUI {
 	private JTextField textField;
@@ -54,7 +55,7 @@ public class Penalty extends BaseUI {
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][grow][][]"));
+		panel.setLayout(new MigLayout("", "[grow][grow][grow]", "[][][grow][grow][][]"));
 		
 		JComboBox comboBox = new JComboBox();
 		panel.add(comboBox, "flowx,cell 1 0,alignx center");
@@ -65,15 +66,21 @@ public class Penalty extends BaseUI {
 		JList list = new JList();
 		panel.add(list, "cell 1 2,grow");
 		
+		JTextArea textArea = new JTextArea();
+		panel.add(textArea, "cell 1 3,grow");
+		
+		JLabel label_3 = new JLabel("گزارش");
+		panel.add(label_3, "cell 2 3,aligny top");
+		
 		JButton button = new JButton("ثبت جریمه");
-		panel.add(button, "cell 1 4,alignx center");
+		panel.add(button, "cell 1 5,alignx center");
 		
 		textField = new JTextField();
-		panel.add(textField, "flowx,cell 1 3,alignx center");
+		panel.add(textField, "flowx,cell 1 4,growx");
 		textField.setColumns(10);
 		
-		JLabel label = new JLabel("مقدار جریمه");
-		panel.add(label, "cell 1 3");
+		JLabel label = new JLabel("جریمه");
+		panel.add(label, "cell 1 4");
 		
 		JLabel label_1 = new JLabel("نمایشگاه");
 		panel.add(label_1, "cell 1 0");

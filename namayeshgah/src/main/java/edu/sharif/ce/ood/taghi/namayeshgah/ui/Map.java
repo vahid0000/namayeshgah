@@ -54,7 +54,7 @@ public class Map extends BaseUI {
 	 */
 	public Map() {
 		super();
-		setTitle("درخواست سالن یا غرفه");
+		setTitle("نقشه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

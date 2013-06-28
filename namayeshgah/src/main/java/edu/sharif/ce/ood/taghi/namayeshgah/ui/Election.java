@@ -45,7 +45,7 @@ public class Election extends BaseUI {
 	 */
 	public Election() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("رای گیری");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

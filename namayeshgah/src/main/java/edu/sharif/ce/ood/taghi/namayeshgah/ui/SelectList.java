@@ -25,11 +25,11 @@ public class SelectList extends JPanel {
 		add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		JButton add = new JButton("اضافه");
+		JButton add = new JButton("<اضافه");
 		add.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(add);
 		
-		JButton remove = new JButton("حذف");
+		JButton remove = new JButton("حذف>");
 		remove.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(remove);
 		

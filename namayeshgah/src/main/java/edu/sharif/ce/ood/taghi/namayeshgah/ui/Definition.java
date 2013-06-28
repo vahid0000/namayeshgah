@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JButton;
 
 public class Definition extends BaseUI {
 	private JTextField textField;
@@ -63,7 +64,7 @@ public class Definition extends BaseUI {
 		
 		SelectList selectList = new SelectList();
 		sl_panel.putConstraint(SpringLayout.WEST, selectList, 26, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.SOUTH, selectList, -10, SpringLayout.SOUTH, panel);
+		sl_panel.putConstraint(SpringLayout.SOUTH, selectList, -25, SpringLayout.SOUTH, panel);
 		sl_panel.putConstraint(SpringLayout.EAST, selectList, -6, SpringLayout.WEST, lStaff);
 		panel.add(selectList);
 		
@@ -106,6 +107,11 @@ public class Definition extends BaseUI {
 		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 6, SpringLayout.SOUTH, textArea);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
+		
+		JButton button = new JButton("ذخیره");
+		sl_panel.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST, selectList);
+		sl_panel.putConstraint(SpringLayout.SOUTH, button, 0, SpringLayout.SOUTH, panel);
+		panel.add(button);
 
 	}
 }
