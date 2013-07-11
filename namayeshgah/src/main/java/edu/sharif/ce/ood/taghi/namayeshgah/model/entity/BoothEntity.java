@@ -32,25 +32,26 @@ public class BoothEntity extends BaseEntity<Integer> {
 	@Column(name = "builder")
 	private String builder;
 
-	@Column(name = "owner")
+	@ManyToOne
+	@JoinColumn(name = "owner")
 	private UserEntity owner;
 
-	@OneToMany(mappedBy = "logs")
+	@OneToMany(mappedBy = "booth")
 	private List<BoothLogEntity> logs;
 
 	@ManyToOne
 	@JoinColumn(name = "showPlace")
-	private ShowPlaceEntity showplace;
+	private ShowPlaceEntity showPlace;
 
-	@OneToMany(mappedBy = "penalties")
+	@OneToMany(mappedBy = "booth")
 	private List<PenaltyEntity> penalties;
 
 	public ShowPlaceEntity getShowplace() {
-		return showplace;
+		return showPlace;
 	}
 
 	public void setShowplace(ShowPlaceEntity showplace) {
-		this.showplace = showplace;
+		this.showPlace = showplace;
 	}
 
 	public List<BoothLogEntity> getLogs() {

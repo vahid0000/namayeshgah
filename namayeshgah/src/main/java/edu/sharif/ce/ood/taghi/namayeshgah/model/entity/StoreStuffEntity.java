@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.PostStuffStatus;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.StoreStuffStatus;
 
-@Entity(name = "postStuff")
+@Entity(name = "storeStuff")
 public class StoreStuffEntity extends BaseEntity<Integer> {
 
 	@Id

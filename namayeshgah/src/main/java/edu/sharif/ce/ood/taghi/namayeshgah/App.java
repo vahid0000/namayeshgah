@@ -13,18 +13,17 @@ public class App
 {
     public static void main( String[] args )
     {
-//        System.out.println( "Hello World!" );
-//        
-//		HibernateUtil.getCurrentSession().beginTransaction();
-//		UserEntity entity = new UserEntity();
-//		entity.setFirstName("vahid");
-//		entity.setLastName("amintabar");
-//		entity.setUserName("vahid");
-//		entity.setPassword("1");
-//		
-//		UserDao ed = new UserDao();
-//		ed.makePersistent(entity);
-    	
-//		HibernateUtil.commitTransaction();
+        System.out.println( "Hello World!" );
+        
+		HibernateUtil.getCurrentSession().beginTransaction();
+		UserEntity entity = new UserEntity();
+		entity.setFirstName("وحید");
+		entity.setLastName("amintabar");
+		entity.setUserName("vahid");
+		entity.setPassword("1");
+		
+		UserDao ed = new UserDao();
+		ed.makePersistent(entity);
+		HibernateUtil.commitTransaction();
     }
 }

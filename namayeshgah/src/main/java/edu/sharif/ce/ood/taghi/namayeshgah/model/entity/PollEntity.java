@@ -25,7 +25,7 @@ public class PollEntity extends BaseEntity<Integer> {
 	@JoinColumn(name = "showPlace")
 	private ShowPlaceEntity showPlace;
 
-	@OneToMany(mappedBy = "questions")
+	@OneToMany(mappedBy = "poll")
 	private List<QuestionEntity> questions;
 
 	@Override

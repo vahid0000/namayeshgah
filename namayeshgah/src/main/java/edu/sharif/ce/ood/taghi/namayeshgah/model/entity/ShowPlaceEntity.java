@@ -14,7 +14,7 @@ import javax.persistence.OrderColumn;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ImplementationStatus;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.PeopleReportStatus;
 
-@Entity(name = "test")
+@Entity(name = "showPlace")
 public class ShowPlaceEntity extends BaseEntity<Integer> {
 
 	@Id
@@ -27,10 +27,10 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	@Column(name = "implementationStatus")
 	private ImplementationStatus implementationStatus;
 
-	@OneToMany(mappedBy = "boothes")
+	@OneToMany(mappedBy = "showPlace")
 	private List<BoothEntity> boothes;
 	
-	@OneToMany(mappedBy = "peopleReports")
+	@OneToMany(mappedBy = "showPlace")
 	private List<PeopleReportEntity> peopleReports;
 
 	@ManyToMany
