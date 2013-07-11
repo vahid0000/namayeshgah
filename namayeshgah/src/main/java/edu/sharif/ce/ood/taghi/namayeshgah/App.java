@@ -24,6 +24,7 @@ public class App
 //		
 //		UserDao ed = new UserDao();
 //		ed.makePersistent(entity);
+    	
 //		HibernateUtil.commitTransaction();
     }
 }
