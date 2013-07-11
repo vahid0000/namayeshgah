@@ -55,6 +55,7 @@
         
         <!-- Names the annotated entity class -->
         <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity"/>
     </session-factory>
 
 </hibernate-configuration>
