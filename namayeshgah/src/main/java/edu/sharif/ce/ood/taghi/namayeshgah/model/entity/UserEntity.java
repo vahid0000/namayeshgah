@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity(name="user")
 public class UserEntity extends BaseEntity<Integer> {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
