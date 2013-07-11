@@ -54,7 +54,28 @@
         <property name="hibernate.current_session_context_class">thread</property>
         
         <!-- Names the annotated entity class -->
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothLogEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.FilesEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.LogEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.NewsEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PenaltyEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PhoneNumberEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PollEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PostStuffEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessLogEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyLogEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.QuestionEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ReceiptEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RequestEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.StoreStuffEntity"/>
         <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ValidationRuleEntity"/>
+        
     </session-factory>
 
 </hibernate-configuration>
