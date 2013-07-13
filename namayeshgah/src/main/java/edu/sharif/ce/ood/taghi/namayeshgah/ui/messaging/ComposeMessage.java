@@ -2,6 +2,7 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui.messaging;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -65,6 +66,7 @@ public class ComposeMessage extends BaseUI {
 		panel.add(selectList, "cell 1 1,grow");
 		
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textField, "flowx,cell 1 2,growx");
 		textField.setColumns(10);
 		
@@ -72,6 +74,7 @@ public class ComposeMessage extends BaseUI {
 		panel.add(label, "cell 1 2");
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textArea, "flowx,cell 1 3,grow");
 		
 		JLabel label_2 = new JLabel("متن");
