@@ -1,7 +1,10 @@
 package edu.sharif.ce.ood.taghi.namayeshgah;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ShowPlaceDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.UserDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
 
@@ -25,5 +28,10 @@ public class App
 		UserDao ed = new UserDao();
 		ed.makePersistent(entity);
 		HibernateUtil.commitTransaction();
+		
+		ShowPlaceDao sd= new ShowPlaceDao();
+		ArrayList<String> gname= new ArrayList<String>();
+		gname.add("vahid");
+		sd.addShowPlace("amir", "amir2", "amir3", "amir4", gname );
     }
 }

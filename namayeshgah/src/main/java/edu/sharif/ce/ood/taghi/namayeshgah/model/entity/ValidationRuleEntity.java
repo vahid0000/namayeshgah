@@ -1,6 +1,7 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.model.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +25,10 @@ public class ValidationRuleEntity extends BaseEntity<Integer> {
 
 	@ManyToMany
 	@OrderColumn(name = "property1")
-	private List<PropertyEntity> property1;
+	private Set<PropertyEntity> property1;
 	@ManyToMany
 	@OrderColumn(name = "property2")
-	private List<PropertyEntity> property2;
+	private Set<PropertyEntity> property2;
 
 	@Override
 	Integer getId() {

@@ -15,8 +15,11 @@ public class FactoryDAO {
 	}
 	
 	public UserDao getUserDao() {
-		return (UserDao) instantiateDAO(UserDao.class);
-		
+		return (UserDao) instantiateDAO(UserDao.class);	
+	}
+	
+	public ShowPlaceDao getShowPlaceDao() {
+		return (ShowPlaceDao) instantiateDAO(ShowPlaceDao.class);	
 	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {

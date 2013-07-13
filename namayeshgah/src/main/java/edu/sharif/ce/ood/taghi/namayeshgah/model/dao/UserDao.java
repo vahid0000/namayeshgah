@@ -30,4 +30,13 @@ public class UserDao extends GenericHibernateDAO<UserEntity, Integer> {
 		return null;
 	}
 
+	public UserEntity getUserByName(String userName){
+		DetachedCriteria criteria = DetachedCriteria.forClass(UserEntity.class);
+		criteria.add(Restrictions.eq("userName", userName));
+		List<UserEntity> entities = this.findByDetachedCriteria(criteria);
+		System.out.println("UserDao: getUserByName.size()="+entities.size());
+		if (entities.size() > 0)
+			return entities.get(0);
+		return null;
+	}
 }
