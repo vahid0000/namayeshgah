@@ -80,7 +80,7 @@ public class AddPolling extends BaseUI {
 		JLabel label_1 = new JLabel("کاربران");
 		upPanel.add(label_1, "cell 1 3,alignx center,aligny bottom");
 
-		SelectList selectList = new SelectList();
+		SelectList selectList = new SelectList(null);
 		upPanel.add(selectList, "cell 1 4,grow");
 
 		JSeparator separator_1 = new JSeparator();

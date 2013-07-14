@@ -108,7 +108,7 @@ public class Properties extends BaseUI {
 		JButton button = new JButton("بالا");
 		panel_2.add(button);
 		
-		SelectList selectList = new SelectList();
+		SelectList selectList = new SelectList(null);
 		panel.add(selectList, "2, 4, fill, fill");
 		
 		JButton button_2 = new JButton("تایید");
