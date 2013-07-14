@@ -293,8 +293,9 @@ public class BaseUI extends JFrame {
 		button[24].setFont(new Font("Tahoma", Font.PLAIN, 11));
 		button[24].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				JFrame frame = new Definition(UserCatalog.getInstance().getAllUserNames());
-//				frame.setVisible(true);
+				JFrame frame = new Definition(UserCatalog.getInstance()
+						.getAllUsers());
+				frame.setVisible(true);
 			}
 		});
 		// panel.add(button[24]);
@@ -338,8 +339,8 @@ public class BaseUI extends JFrame {
 		for (Integer butId : UserCatalog.getInstance().getRolesOfLoggedInUser()) {
 			panel.add(button[butId]);
 		}
-		userLabel
-				.setText(UserCatalog.getInstance().getFullNameOfLoggedInUser()+" "+"خوش آمدید");
+		userLabel.setText(UserCatalog.getInstance().getFullNameOfLoggedInUser()
+				+ " " + "خوش آمدید");
 	}
 
 }

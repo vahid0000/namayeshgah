@@ -41,7 +41,7 @@ public class UserDao extends GenericHibernateDAO<UserEntity, Integer> {
 		return null;
 	}
 	
-	public List<String> getAllUser(String userName){
+	public List<String> getAllUser(){
 		List<UserEntity> entities = this.findAll();
 		System.out.println("UserDao: getAllUser.size()="+entities.size());
 		ArrayList<String> users_string=new ArrayList<String>();

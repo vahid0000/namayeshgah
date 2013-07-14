@@ -13,9 +13,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.ShowPlaceCatalog;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Definition extends BaseUI {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField nameText;
+	private JTextField ownerText;
 	public SelectList<String> selectList;
 
 	// private JPanel contentPane;
@@ -81,48 +87,50 @@ public class Definition extends BaseUI {
 				SpringLayout.WEST, lStaff);
 		panel.add(selectList);
 
-		textField = new JTextField();
-		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		nameText = new JTextField();
+		nameText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.NORTH, lName, 3,
-				SpringLayout.NORTH, textField);
+				SpringLayout.NORTH, nameText);
 		sl_panel.putConstraint(SpringLayout.WEST, lName, 4, SpringLayout.EAST,
-				textField);
-		sl_panel.putConstraint(SpringLayout.EAST, textField, -78,
+				nameText);
+		sl_panel.putConstraint(SpringLayout.EAST, nameText, -78,
 				SpringLayout.EAST, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, textField, 26,
+		sl_panel.putConstraint(SpringLayout.WEST, nameText, 26,
 				SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, textField, 10,
+		sl_panel.putConstraint(SpringLayout.NORTH, nameText, 10,
 				SpringLayout.NORTH, panel);
-		panel.add(textField);
-		textField.setColumns(10);
+		panel.add(nameText);
+		nameText.setColumns(10);
 
-		JTextArea txtrDfdsff = new JTextArea();
-		txtrDfdsff.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		sl_panel.putConstraint(SpringLayout.NORTH, txtrDfdsff, 7,
-				SpringLayout.SOUTH, textField);
-		sl_panel.putConstraint(SpringLayout.WEST, txtrDfdsff, 26,
+		final JTextArea shortDescriptionText = new JTextArea();
+		shortDescriptionText
+				.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		sl_panel.putConstraint(SpringLayout.NORTH, shortDescriptionText, 7,
+				SpringLayout.SOUTH, nameText);
+		sl_panel.putConstraint(SpringLayout.WEST, shortDescriptionText, 26,
 				SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, txtrDfdsff, -6,
+		sl_panel.putConstraint(SpringLayout.EAST, shortDescriptionText, -6,
 				SpringLayout.WEST, lBrief);
 		sl_panel.putConstraint(SpringLayout.NORTH, lBrief, -2,
-				SpringLayout.NORTH, txtrDfdsff);
-		txtrDfdsff.setText("خلاصه");
-		panel.add(txtrDfdsff);
+				SpringLayout.NORTH, shortDescriptionText);
+		shortDescriptionText.setText("خلاصه");
+		panel.add(shortDescriptionText);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		sl_panel.putConstraint(SpringLayout.SOUTH, txtrDfdsff, -11,
-				SpringLayout.NORTH, textArea);
-		sl_panel.putConstraint(SpringLayout.SOUTH, textArea, -184,
+		final JTextArea descriptionText = new JTextArea();
+		descriptionText
+				.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		sl_panel.putConstraint(SpringLayout.SOUTH, shortDescriptionText, -11,
+				SpringLayout.NORTH, descriptionText);
+		sl_panel.putConstraint(SpringLayout.SOUTH, descriptionText, -184,
 				SpringLayout.SOUTH, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textArea, -6,
+		sl_panel.putConstraint(SpringLayout.EAST, descriptionText, -6,
 				SpringLayout.WEST, lDescription);
-		sl_panel.putConstraint(SpringLayout.NORTH, textArea, 97,
+		sl_panel.putConstraint(SpringLayout.NORTH, descriptionText, 97,
 				SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, textArea, 26,
+		sl_panel.putConstraint(SpringLayout.WEST, descriptionText, 26,
 				SpringLayout.WEST, panel);
-		textArea.setText("شرح");
-		panel.add(textArea);
+		descriptionText.setText("شرح");
+		panel.add(descriptionText);
 
 		JLabel label = new JLabel("سفارش دهنده");
 		sl_panel.putConstraint(SpringLayout.NORTH, lStaff, 11,
@@ -133,20 +141,30 @@ public class Definition extends BaseUI {
 				lName);
 		panel.add(label);
 
-		textField_1 = new JTextField();
-		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		ownerText = new JTextField();
+		ownerText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.NORTH, selectList, 6,
-				SpringLayout.SOUTH, textField_1);
-		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 26,
+				SpringLayout.SOUTH, ownerText);
+		sl_panel.putConstraint(SpringLayout.WEST, ownerText, 26,
 				SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.EAST, textField_1, -6,
+		sl_panel.putConstraint(SpringLayout.EAST, ownerText, -6,
 				SpringLayout.WEST, label);
-		sl_panel.putConstraint(SpringLayout.NORTH, textField_1, 6,
-				SpringLayout.SOUTH, textArea);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		sl_panel.putConstraint(SpringLayout.NORTH, ownerText, 6,
+				SpringLayout.SOUTH, descriptionText);
+		panel.add(ownerText);
+		ownerText.setColumns(10);
 
 		JButton button = new JButton("ذخیره");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("UI defenition: addShowPlace name:"
+						+ nameText.getText());
+				ShowPlaceCatalog.getInstance().addShowPlace(nameText.getText(),
+								shortDescriptionText.getText(),
+								descriptionText.getText(), ownerText.getText(),
+								selectList.getSelectedItems());
+			}
+		});
 		sl_panel.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST,
 				selectList);
 		sl_panel.putConstraint(SpringLayout.SOUTH, button, 0,
