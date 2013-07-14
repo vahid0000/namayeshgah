@@ -22,12 +22,8 @@ public class ShowPlaceCatalog {
 	
 	public void addShowPlace(String name, String defSummary, String definition, String owner, List<String> groupManager){
 		HibernateUtil.getCurrentSession().beginTransaction();
-		ArrayList<UserEntity> users= new ArrayList<UserEntity>();
 		ShowPlaceEntity entity = FactoryDAO.getInstance().getShowPlaceDao()
 				.addShowPlace(name, defSummary, definition, owner, groupManager);
 		HibernateUtil.commitTransaction();
 	}
-	
-	
-
 }
