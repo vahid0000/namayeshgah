@@ -1,5 +1,6 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -37,6 +38,18 @@ public class UserDao extends GenericHibernateDAO<UserEntity, Integer> {
 		System.out.println("UserDao: getUserByName.size()="+entities.size());
 		if (entities.size() > 0)
 			return entities.get(0);
+		return null;
+	}
+	
+	public List<String> getAllUser(String userName){
+		List<UserEntity> entities = this.findAll();
+		System.out.println("UserDao: getAllUser.size()="+entities.size());
+		ArrayList<String> users_string=new ArrayList<String>();
+		for(UserEntity user: entities){
+			users_string.add(user.toString());
+		}
+		if (users_string.size() > 0)
+			return users_string;
 		return null;
 	}
 }

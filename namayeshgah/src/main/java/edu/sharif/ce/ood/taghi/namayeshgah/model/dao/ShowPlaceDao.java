@@ -22,7 +22,7 @@ import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ImplementationStatus;
 
 public class ShowPlaceDao extends GenericHibernateDAO<ShowPlaceEntity, Integer> {
-
+	
 	public ShowPlaceEntity addShowPlace(String name, String defSummary, String definition, String owner, List<String> groupManager) {
 		ShowPlaceEntity entity = new ShowPlaceEntity();
 		entity.setName(name);
@@ -43,4 +43,5 @@ public class ShowPlaceDao extends GenericHibernateDAO<ShowPlaceEntity, Integer> 
 		this.makePersistent(entity);
 		return entity;
 	}
+	
 }
