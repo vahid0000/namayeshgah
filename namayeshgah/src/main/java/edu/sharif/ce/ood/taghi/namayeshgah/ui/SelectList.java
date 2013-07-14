@@ -1,21 +1,17 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JPanel;
-import javax.swing.ListModel;
-import javax.swing.SpringLayout;
-import javax.swing.JList;
-import javax.swing.JButton;
-
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JPanel;
 
 public class SelectList<T> extends JPanel {
 
@@ -28,8 +24,7 @@ public class SelectList<T> extends JPanel {
 	private JButton remove;
 
 	ArrayList<String> items;
-	JList allItems;
-	JList selectedItems;
+
 	/**
 	 * Create the panel.
 	 */
@@ -96,17 +91,5 @@ public class SelectList<T> extends JPanel {
 		System.out.println("Select List: get Selected Items:" + items);
 		return items;
 	}
-	public void initial(String[] rows){
-		items= new ArrayList<String>();
-		for(String s : rows){
-			items.add(s);
-		}
-	}
-	public void addStringToSelected(String s){
-//		( (DefaultListModel) selectedItems.getModel() ).addElement( allItems.getSelectedValue().getText() );
-		
-	}
-	public java.util.List<String> getSelectedItems(){
-		return null;
-	}
+
 }

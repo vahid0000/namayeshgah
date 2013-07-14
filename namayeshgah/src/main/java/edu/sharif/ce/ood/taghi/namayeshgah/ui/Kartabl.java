@@ -2,6 +2,7 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -57,48 +58,50 @@ public class Kartabl extends BaseUI {
 	public Kartabl() {
 		super();
 		setTitle("کارتابل");
-		
+
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(10, 0, 0, 0));
-		
+
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2);
 		panel_2.setLayout(new MigLayout("", "[][][grow][]", "[][]"));
-		
+
 		JLabel label_2 = new JLabel("شرح");
 		panel_2.add(label_2, "cell 3 0");
-		
+
 		JButton button_3 = new JButton("تایید");
 		panel_2.add(button_3, "cell 0 1");
-		
+
 		JButton button_2 = new JButton("رد");
 		panel_2.add(button_2, "cell 1 1");
-		
+
 		textField_1 = new JTextField();
+		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		textField_1.setColumns(10);
 		panel_2.add(textField_1, "cell 2 1,growx");
-		
+
 		JLabel label_3 = new JLabel("پاسخ");
 		panel_2.add(label_3, "cell 3 1");
-		
+
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new MigLayout("", "[][][grow][]", "[][]"));
-		
+
 		JLabel label_1 = new JLabel("شرح");
 		panel_1.add(label_1, "cell 3 0");
-		
+
 		JButton button = new JButton("تایید");
 		panel_1.add(button, "cell 0 1");
-		
+
 		JButton button_1 = new JButton("رد");
 		panel_1.add(button_1, "cell 1 1");
-		
+
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel_1.add(textField, "flowx,cell 2 1,growx");
 		textField.setColumns(10);
-		
+
 		JLabel label = new JLabel("پاسخ");
 		panel_1.add(label, "cell 3 1");
 	}

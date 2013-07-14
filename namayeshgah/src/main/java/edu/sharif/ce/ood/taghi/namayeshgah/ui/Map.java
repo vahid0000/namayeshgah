@@ -1,33 +1,15 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class Map extends BaseUI {
 
