@@ -92,7 +92,7 @@ public class ManageProcess extends BaseUI {
 		JLabel label = new JLabel("نمایشگاه");
 		panel_1.add(label);
 		
-		SelectList selectList = new SelectList();
+		SelectList selectList = new SelectList(null);
 		panel.add(selectList, "2, 4, fill, fill");
 		
 		JButton button = new JButton("تایید");

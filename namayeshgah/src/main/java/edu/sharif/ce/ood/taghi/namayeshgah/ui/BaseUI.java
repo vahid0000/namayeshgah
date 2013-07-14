@@ -19,6 +19,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.UserCatalog;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling.Controller;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.News;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.Portal;
@@ -306,8 +307,8 @@ public class BaseUI extends JFrame {
 		button[24].setFont(new Font("Tahoma", Font.PLAIN, 11));
 		button[24].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new Definition();
-				frame.setVisible(true);
+//				JFrame frame = new Definition(UserCatalog.getInstance().getAllUserNames());
+//				frame.setVisible(true);
 			}
 		});
 		// panel.add(button[24]);

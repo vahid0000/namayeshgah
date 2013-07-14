@@ -62,7 +62,7 @@ public class ComposeMessage extends BaseUI {
 		JLabel label_1 = new JLabel("گیرندگان");
 		panel.add(label_1, "cell 1 0,alignx center");
 		
-		SelectList selectList = new SelectList();
+		SelectList selectList = new SelectList(null);
 		panel.add(selectList, "cell 1 1,grow");
 		
 		textField = new JTextField();
