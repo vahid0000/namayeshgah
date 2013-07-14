@@ -1,33 +1,22 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.factories.FormFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import java.awt.GridLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import net.miginfocom.swing.MigLayout;
 
 public class Financial extends BaseUI {
 	private JTextField textField;
@@ -83,6 +72,7 @@ public class Financial extends BaseUI {
 		upPanel.add(list, "cell 1 3,grow");
 
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		upPanel.add(textField, "cell 1 2");
 		textField.setColumns(10);
 
@@ -106,6 +96,7 @@ public class Financial extends BaseUI {
 		downPanel.add(label_5, "cell 1 0,alignx center");
 
 		textField_1 = new JTextField();
+		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		downPanel.add(textField_1, "cell 1 1,growx");
 		textField_1.setColumns(10);
 
@@ -113,6 +104,7 @@ public class Financial extends BaseUI {
 		downPanel.add(label_3, "cell 2 1");
 
 		JTextArea textArea = new JTextArea();
+		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		downPanel.add(textArea, "cell 1 2,grow");
 
 		JLabel label_4 = new JLabel("توضیحات");

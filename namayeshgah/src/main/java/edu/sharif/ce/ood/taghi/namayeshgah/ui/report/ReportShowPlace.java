@@ -2,6 +2,7 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui.report;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -66,6 +67,7 @@ public class ReportShowPlace extends BaseUI {
 		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][][][][][][grow]"));
 		
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textField, "cell 1 0,alignx right");
 		textField.setColumns(10);
 		
@@ -73,6 +75,7 @@ public class ReportShowPlace extends BaseUI {
 		panel.add(label, "cell 2 0");
 		
 		textField_1 = new JTextField();
+		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textField_1, "cell 1 1,alignx right");
 		textField_1.setColumns(10);
 		

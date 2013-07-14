@@ -2,6 +2,7 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui.request;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -59,39 +60,43 @@ public class AddRequest extends BaseUI {
 	public AddRequest() {
 		super();
 		setTitle("درخواست ها");
-		
+
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][grow][][][grow][grow][]"));
-		
+		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]",
+				"[][grow][][][grow][grow][]"));
+
 		JList list = new JList();
 		panel.add(list, "cell 1 1,grow");
-		
+
 		JLabel label = new JLabel("درخواست ها");
 		panel.add(label, "cell 2 1,aligny top");
-		
+
 		JButton button = new JButton("ایجاد درخواست جدید");
 		panel.add(button, "flowx,cell 1 2");
-		
+
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textField, "cell 1 3,growx");
 		textField.setColumns(10);
-		
+
 		JLabel label_1 = new JLabel("عنوان");
 		panel.add(label_1, "cell 2 3");
-		
+
 		JTextArea textArea = new JTextArea();
+		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textArea, "cell 1 4,grow");
-		
+
 		JLabel label_2 = new JLabel("شرح");
 		panel.add(label_2, "cell 2 4,aligny top");
-		
+
 		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textArea_1, "cell 1 5,grow");
-		
+
 		JLabel label_3 = new JLabel("پاسخ");
 		panel.add(label_3, "cell 2 5,aligny top");
-		
+
 		JButton button_1 = new JButton("حذف");
 		panel.add(button_1, "cell 1 2");
 	}

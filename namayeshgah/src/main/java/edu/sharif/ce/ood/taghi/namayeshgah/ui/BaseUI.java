@@ -2,24 +2,20 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.UserCatalog;
-import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling.Controller;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.News;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.Portal;
@@ -30,16 +26,6 @@ import edu.sharif.ce.ood.taghi.namayeshgah.ui.publish.Publish;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.report.AddReport;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.report.ReportShowPlace;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.request.ManageRequest;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollBar;
-import javax.swing.ScrollPaneConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 
 public class BaseUI extends JFrame {
 

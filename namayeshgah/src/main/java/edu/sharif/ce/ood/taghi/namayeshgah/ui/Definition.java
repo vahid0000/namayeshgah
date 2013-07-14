@@ -1,19 +1,17 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.SpringLayout;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 public class Definition extends BaseUI {
 	private JTextField textField;
@@ -74,7 +72,6 @@ public class Definition extends BaseUI {
 				lName);
 		panel.add(lStaff);
 
-		
 		selectList = new SelectList<String>(allUsers);
 		sl_panel.putConstraint(SpringLayout.WEST, selectList, 26,
 				SpringLayout.WEST, panel);
@@ -85,6 +82,7 @@ public class Definition extends BaseUI {
 		panel.add(selectList);
 
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.NORTH, lName, 3,
 				SpringLayout.NORTH, textField);
 		sl_panel.putConstraint(SpringLayout.WEST, lName, 4, SpringLayout.EAST,
@@ -99,6 +97,7 @@ public class Definition extends BaseUI {
 		textField.setColumns(10);
 
 		JTextArea txtrDfdsff = new JTextArea();
+		txtrDfdsff.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.NORTH, txtrDfdsff, 7,
 				SpringLayout.SOUTH, textField);
 		sl_panel.putConstraint(SpringLayout.WEST, txtrDfdsff, 26,
@@ -111,6 +110,7 @@ public class Definition extends BaseUI {
 		panel.add(txtrDfdsff);
 
 		JTextArea textArea = new JTextArea();
+		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.SOUTH, txtrDfdsff, -11,
 				SpringLayout.NORTH, textArea);
 		sl_panel.putConstraint(SpringLayout.SOUTH, textArea, -184,
@@ -134,6 +134,7 @@ public class Definition extends BaseUI {
 		panel.add(label);
 
 		textField_1 = new JTextField();
+		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		sl_panel.putConstraint(SpringLayout.NORTH, selectList, 6,
 				SpringLayout.SOUTH, textField_1);
 		sl_panel.putConstraint(SpringLayout.WEST, textField_1, 26,

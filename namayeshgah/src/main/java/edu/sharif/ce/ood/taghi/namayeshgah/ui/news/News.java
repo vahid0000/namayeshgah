@@ -2,6 +2,7 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui.news;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -66,6 +67,7 @@ public class News extends BaseUI {
 		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][][grow][]"));
 		
 		textField = new JTextField();
+		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textField, "cell 1 1,growx");
 		textField.setColumns(10);
 		
@@ -73,6 +75,7 @@ public class News extends BaseUI {
 		panel.add(label, "cell 2 1");
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(textArea, "cell 1 2,grow");
 		
 		JLabel label_1 = new JLabel("متن");

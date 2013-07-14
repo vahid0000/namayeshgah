@@ -2,15 +2,14 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JList;
-import javax.swing.JLabel;
+
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
 
 public class AssignRoles extends BaseUI {
 
