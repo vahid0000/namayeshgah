@@ -8,7 +8,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
+
 import net.miginfocom.swing.MigLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StartShowPlace extends BaseUI {
 
@@ -21,7 +26,10 @@ public class StartShowPlace extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartShowPlace frame = new StartShowPlace();
+					 ArrayList<ShowPlaceBean> aa = new ArrayList<ShowPlaceBean>();
+					 aa.add(new ShowPlaceBean(10,"a"));
+					 aa.add(new ShowPlaceBean(15,"b"));
+					StartShowPlace frame = new StartShowPlace(aa);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,16 +41,16 @@ public class StartShowPlace extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public StartShowPlace() {
+	public StartShowPlace(List<ShowPlaceBean> showPlaces) {
 		super();
 		setTitle("اجرای نمایشگاه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[][]"));
+		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]", "[grow][]"));
 		
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "cell 1 0,alignx right");
+		SelecTshowPlaceCombo<ShowPlaceBean> selecTshowPlaceCombo = new SelecTshowPlaceCombo<ShowPlaceBean>(showPlaces);
+		panel.add(selecTshowPlaceCombo, "cell 1 0,grow");
 		
 		JLabel label = new JLabel("نمایشگاه");
 		panel.add(label, "cell 2 0");
