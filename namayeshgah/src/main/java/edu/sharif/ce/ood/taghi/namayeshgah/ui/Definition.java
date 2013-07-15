@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -157,12 +158,19 @@ public class Definition extends BaseUI {
 		JButton button = new JButton("ذخیره");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("UI defenition: addShowPlace name:"
-						+ nameText.getText());
-				ShowPlaceCatalog.getInstance().addShowPlace(nameText.getText(),
-								shortDescriptionText.getText(),
-								descriptionText.getText(), ownerText.getText(),
-								selectList.getSelectedItems());
+				int permition = JOptionPane.showConfirmDialog(Definition.this,
+						"آیا صحت اطلاعات وارد شده را تایید می کنید؟",
+						"تایید صحت اطلاعات",
+						JOptionPane.YES_NO_OPTION);
+
+				if (permition == 0) {
+					System.out.println("UI defenition: addShowPlace name:"
+							+ nameText.getText());
+					ShowPlaceCatalog.getInstance().addShowPlace(
+							nameText.getText(), shortDescriptionText.getText(),
+							descriptionText.getText(), ownerText.getText(),
+							selectList.getSelectedItems());
+				}
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.WEST, button, 0, SpringLayout.WEST,
