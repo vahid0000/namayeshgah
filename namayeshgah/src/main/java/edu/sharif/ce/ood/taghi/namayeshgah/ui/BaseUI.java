@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -16,10 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.CalendarTool;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.ShowPlaceCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.UserCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.RoleBean;
-import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling.Controller;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.News;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.Portal;
@@ -119,7 +120,8 @@ public class BaseUI extends JFrame {
 		button[5] = new JButton("بازرسی");
 		button[5].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new Controller();
+				JFrame frame = new Controller(ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
@@ -128,7 +130,8 @@ public class BaseUI extends JFrame {
 		button[6] = new JButton("انبار");
 		button[6].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new Store();
+				JFrame frame = new Store(ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
@@ -356,6 +359,12 @@ public class BaseUI extends JFrame {
 						ShowPlaceCatalog.getInstance().getCurrentShowPlace()));
 		userLabel.setText(UserCatalog.getInstance().getFullNameOfLoggedInUser()
 				+ " " + "خوش آمدید");
+
+		JLabel dateLabel = new JLabel("");
+		contentPane.add(dateLabel, BorderLayout.SOUTH);
+		CalendarTool ct = new CalendarTool(new Date());
+		dateLabel.setText(ct.getIranianDate());
+
 	}
 
 	public void setButtons(List<RoleBean> roles) {

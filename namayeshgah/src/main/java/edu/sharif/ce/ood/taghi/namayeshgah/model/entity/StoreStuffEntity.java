@@ -34,14 +34,46 @@ public class StoreStuffEntity extends BaseEntity<Integer> {
 	private ShowPlaceEntity showPlace;
 
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getLastDateStatusChange() {
+		return lastDateStatusChange;
+	}
+
+	public void setLastDateStatusChange(Date lastDateStatusChange) {
+		this.lastDateStatusChange = lastDateStatusChange;
+	}
+
+	public StoreStuffStatus getStoreStuffStatus() {
+		return storeStuffStatus;
+	}
+
+	public void setStoreStuffStatus(StoreStuffStatus storeStuffStatus) {
+		this.storeStuffStatus = storeStuffStatus;
+	}
+
+	public ShowPlaceEntity getShowPlace() {
+		return showPlace;
+	}
+
+	public void setShowPlace(ShowPlaceEntity showPlace) {
+		this.showPlace = showPlace;
 	}
 
 }

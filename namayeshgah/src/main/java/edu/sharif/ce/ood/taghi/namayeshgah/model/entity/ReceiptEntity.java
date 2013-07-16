@@ -22,9 +22,9 @@ public class ReceiptEntity extends BaseEntity<Integer> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name = "subject")
-	private String subject;
-	
+	@Column(name = "lastDateStatusChange")
+	private Date lastDateStatusChange;
+
 	@Column(name = "description")
 	private String description;
 
@@ -39,14 +39,59 @@ public class ReceiptEntity extends BaseEntity<Integer> {
 	private ShowPlaceEntity showPlace;
 
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id=id;
 
 	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public ReceiptStatus getReceiptStatus() {
+		return receiptStatus;
+	}
+
+	public void setReceiptStatus(ReceiptStatus receiptStatus) {
+		this.receiptStatus = receiptStatus;
+	}
+
+	public ShowPlaceEntity getShowPlace() {
+		return showPlace;
+	}
+
+	public void setShowPlace(ShowPlaceEntity showPlace) {
+		this.showPlace = showPlace;
+	}
+
+	public Date getLastDateStatusChange() {
+		return lastDateStatusChange;
+	}
+
+	public void setLastDateStatusChange(Date lastDateStatusChange) {
+		this.lastDateStatusChange = lastDateStatusChange;
+	}
+	
+	
+	
+	
 
 }

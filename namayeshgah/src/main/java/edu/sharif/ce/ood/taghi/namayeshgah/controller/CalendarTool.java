@@ -1,6 +1,7 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.controller;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -44,6 +45,13 @@ public class CalendarTool {
 	 */
 	public CalendarTool(int year, int month, int day) {
 		setGregorianDate(year, month, day);
+	}
+
+	public CalendarTool(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		setGregorianDate(date.getYear() + 1900, date.getMonth() + 1,
+				calendar.get(Calendar.DAY_OF_MONTH));
 	}
 
 	/**

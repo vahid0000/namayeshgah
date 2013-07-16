@@ -28,14 +28,38 @@ public class PenaltyEntity extends BaseEntity<Integer> {
 	private BoothEntity booth;
 
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public PenaltyStatus getLastStatus() {
+		return lastStatus;
+	}
+
+	public void setLastStatus(PenaltyStatus lastStatus) {
+		this.lastStatus = lastStatus;
+	}
+
+	public BoothEntity getBooth() {
+		return booth;
+	}
+
+	public void setBooth(BoothEntity booth) {
+		this.booth = booth;
 	}
 
 }

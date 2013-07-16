@@ -63,6 +63,20 @@ public class FactoryDAO {
 		return (RequestDao) instantiateDAO(RequestDao.class);
 	}
 
+	public BoothDao getBoothDao() {
+		return (BoothDao) instantiateDAO(BoothDao.class);
+	}
+
+	public PenaltyDao getPenaltyDao() {
+		return (PenaltyDao) instantiateDAO(PenaltyDao.class);
+	}
+	public StoreDao getStoreDao() {
+		return (StoreDao) instantiateDAO(StoreDao.class);
+	}
+	public FinancialDao getFinancialDao() {
+		return (FinancialDao) instantiateDAO(FinancialDao.class);
+	}
+
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {
 		try {
 			GenericHibernateDAO dao = (GenericHibernateDAO) daoClass

@@ -29,9 +29,7 @@ public class LogCatalog {
 				.getProcessLogDao().getAllProcessLogs(showPlace);
 		ArrayList<String> logs = new ArrayList<String>();
 		for (ProcessLogEntity log : logEntities) {
-			CalendarTool calendarTool = new CalendarTool(log.getDate()
-					.getYear() + 1900, log.getDate().getMonth() + 1, log
-					.getDate().getDay() + 1);
+			CalendarTool calendarTool = new CalendarTool(log.getDate());
 			logs.add(calendarTool.getIranianDate() + ":" + log.getDescription());
 		}
 
@@ -47,9 +45,7 @@ public class LogCatalog {
 				.getPropertyLogDao().getAllPropertyLogs(currentShowPlace);
 		ArrayList<String> logs = new ArrayList<String>();
 		for (PropertyLogEntity log : logEntities) {
-			CalendarTool calendarTool = new CalendarTool(log.getDate()
-					.getYear() + 1900, log.getDate().getMonth() + 1, log
-					.getDate().getDay() + 1);
+			CalendarTool calendarTool = new CalendarTool(log.getDate());
 			logs.add(calendarTool.getIranianDate() + ":" + log.getDescription());
 		}
 

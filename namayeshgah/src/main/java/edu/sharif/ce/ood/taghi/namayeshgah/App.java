@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.BoothDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ProcessDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.PropertyDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ShowPlaceDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.UserDao;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ConstRoleEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RoleEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.BoothStatus;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ProcessStatus;
 
 /**
@@ -57,13 +60,33 @@ public class App {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		// UserEntity entity = FactoryDAO.getInstance().getUserDao()
 		// .findById(1, false);
-		 addUsers();
-//		 addShowPlace();
-		 addProcesses();
-		 addRoles();
-		addProperties();
+		// addUsers();
+		// addShowPlace();
+		// addProcesses();
+		// addRoles();
+		// addProperties();
+		addBoothes();
 		// System.out.println(entity.getLastName());
 		HibernateUtil.commitTransaction();
+
+	}
+
+	private static void addBoothes() {
+		BoothDao bd = new BoothDao();
+		ShowPlaceDao sd = new ShowPlaceDao();
+		BoothEntity booth = new BoothEntity();
+		booth.setBoothStatus(BoothStatus.available);
+		booth.setNumber(1);
+		booth.setSaloon(1);
+		booth.setShowplace(sd.findById(1, false));
+		bd.makePersistent(booth);
+		
+		BoothEntity booth2 = new BoothEntity();
+		booth2.setBoothStatus(BoothStatus.available);
+		booth2.setNumber(2);
+		booth2.setSaloon(1);
+		booth2.setShowplace(sd.findById(1, false));
+		bd.makePersistent(booth2);
 
 	}
 

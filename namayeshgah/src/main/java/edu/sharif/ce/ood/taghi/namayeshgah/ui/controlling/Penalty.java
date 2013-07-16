@@ -1,33 +1,31 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.factories.FormFactory;
-
-import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
-
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import net.miginfocom.swing.MigLayout;
+import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.BoothBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
 
 public class Penalty extends BaseUI {
-	private JTextField textField;
+	private JList<BoothBean> list;
 
 	// private JPanel contentPane;
 
@@ -38,7 +36,12 @@ public class Penalty extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Penalty frame = new Penalty();
+					HibernateUtil.getCurrentSession().beginTransaction();
+					ShowPlaceBean a = new ShowPlaceBean(FactoryDAO
+							.getInstance().getShowPlaceDao().findById(1, false));
+
+					HibernateUtil.commitTransaction();
+					Penalty frame = new Penalty(a);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +53,7 @@ public class Penalty extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Penalty() {
+	public Penalty(ShowPlaceBean currentShowPlace) {
 		super();
 		setTitle("فراخوان و اطلاع رسانی");
 
@@ -59,35 +62,52 @@ public class Penalty extends BaseUI {
 		panel.setLayout(new MigLayout("", "[grow][grow][grow]",
 				"[][][grow][grow][][]"));
 
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "flowx,cell 1 0,alignx center");
-
 		JLabel label_2 = new JLabel("غرفه ها");
 		panel.add(label_2, "cell 1 1,alignx center");
 
-		JList list = new JList();
+		list = new JList<BoothBean>();
+		list.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		panel.add(list, "cell 1 2,grow");
+		this.initialList(currentShowPlace);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textArea, "cell 1 3,grow");
+		final JTextArea descriptionText = new JTextArea();
+		descriptionText
+				.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(descriptionText, "cell 1 3,grow");
 
 		JLabel label_3 = new JLabel("گزارش");
 		panel.add(label_3, "cell 2 3,aligny top");
 
 		JButton button = new JButton("ثبت جریمه");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (list.getSelectedIndex() < 0) {
+					JOptionPane.showMessageDialog(Penalty.this,
+							"هیچ غرفه ای را انتخاب نکرده اید", "خطا",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					int permition = JOptionPane.showConfirmDialog(Penalty.this,
+							"آیا صحت اطلاعات وارد شده را تایید می کنید؟",
+							"تایید صحت اطلاعات", JOptionPane.YES_NO_OPTION);
+					if (permition == 0) {
+						list.getSelectedValue().addPenalty(
+								descriptionText.getText());
+					}
+				}
+			}
+		});
 		panel.add(button, "cell 1 5,alignx center");
+	}
 
-		textField = new JTextField();
-		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField, "flowx,cell 1 4,growx");
-		textField.setColumns(10);
-
-		JLabel label = new JLabel("جریمه");
-		panel.add(label, "cell 1 4");
-
-		JLabel label_1 = new JLabel("نمایشگاه");
-		panel.add(label_1, "cell 1 0");
+	private void initialList(ShowPlaceBean currentShowPlace) {
+		List<BoothBean> boothes = currentShowPlace.getDeliquentBoothes();
+		System.out.println("Penalty/ initialList/ boothes.size"
+				+ boothes.size());
+		DefaultListModel<BoothBean> model = new DefaultListModel<BoothBean>();
+		for (BoothBean bean : boothes) {
+			model.addElement(bean);
+		}
+		this.list.setModel(model);
 	}
 
 }

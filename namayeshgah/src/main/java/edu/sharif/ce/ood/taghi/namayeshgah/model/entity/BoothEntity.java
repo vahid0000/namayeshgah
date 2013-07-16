@@ -103,12 +103,12 @@ public class BoothEntity extends BaseEntity<Integer> {
 	}
 
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 
 	}

@@ -6,14 +6,13 @@ import java.util.Set;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
-import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ShowPlaceDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RequestEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
-import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.BoothStatus;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ImplementationStatus;
 
 public class ShowPlaceBean {
@@ -41,6 +40,8 @@ public class ShowPlaceBean {
 		for (BoothEntity boothEntity : entity.getBoothes()) {
 			this.boothes.add(new BoothBean(boothEntity));
 		}
+		System.out.println("ShowPlaceBean/constructor/ booth.size"
+				+ this.boothes.size());
 
 		peopleReports = new ArrayList<PeopleReportBean>();
 		for (PeopleReportEntity reportEntity : entity.getPeopleReports()) {
@@ -163,6 +164,23 @@ public class ShowPlaceBean {
 		FactoryDAO.getInstance().getShowPlaceDao().makePersistent(entity);
 		HibernateUtil.commitTransaction();
 
+	}
+
+	public List<BoothBean> getBoothes() {
+		return boothes;
+	}
+
+	public void setBoothes(List<BoothBean> boothes) {
+		this.boothes = boothes;
+	}
+
+	public List<BoothBean> getDeliquentBoothes() {
+		ArrayList<BoothBean> deliquents = new ArrayList<BoothBean>();
+		for (BoothBean booth : this.boothes) {
+			if (booth.getBoothStatus().equals(BoothStatus.deliqunet))
+				deliquents.add(booth);
+		}
+		return deliquents;
 	}
 
 }
