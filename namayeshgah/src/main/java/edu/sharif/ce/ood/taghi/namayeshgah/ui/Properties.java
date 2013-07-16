@@ -41,7 +41,7 @@ public class Properties extends BaseUI {
 	 */
 	public Properties() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("فرآیند ها");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

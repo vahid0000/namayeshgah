@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +16,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.ShowPlaceCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.UserCatalog;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.RoleBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.controlling.Controller;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.News;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.news.Portal;
@@ -37,6 +41,8 @@ public class BaseUI extends JFrame {
 
 	private JButton[] button = new JButton[28];
 
+	private JPanel panel;
+
 	/**
 	 * Launch the application.
 	 */
@@ -57,13 +63,14 @@ public class BaseUI extends JFrame {
 	 * Create the frame.
 	 */
 	public BaseUI() {
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		JScrollPane scrollBar = new JScrollPane(panel);
 		scrollBar
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -213,7 +220,8 @@ public class BaseUI extends JFrame {
 		button[16] = new JButton("برگزاری-خاتمه");
 		button[16].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new StartShowPlace();
+				JFrame frame = new StartShowPlace(ShowPlaceCatalog
+						.getInstance().getAllShowPlaces());
 				frame.setVisible(true);
 			}
 		});
@@ -277,7 +285,10 @@ public class BaseUI extends JFrame {
 		button[23].setFont(new Font("Tahoma", Font.PLAIN, 11));
 		button[23].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new ManageProcess();
+				 JFrame frame = new
+				 ManageProcess(ShowPlaceCatalog.getInstance()
+						.getAllShowPlaces(), ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
@@ -336,11 +347,30 @@ public class BaseUI extends JFrame {
 		// panel.add(button[28]);
 
 		// panel.add(button[29]);
-		for (Integer butId : UserCatalog.getInstance().getRolesOfLoggedInUser()) {
-			panel.add(button[butId]);
-		}
+		this.setButtons(UserCatalog.getInstance()
+				.getRolesOfLoggedInUserByShowPlace(
+						ShowPlaceCatalog.getInstance().getCurrentShowPlace()));
 		userLabel.setText(UserCatalog.getInstance().getFullNameOfLoggedInUser()
 				+ " " + "خوش آمدید");
+	}
+
+	public void setButtons(List<RoleBean> roles) {
+		// panel=new JPanel();
+		// panel.setLayout(new GridLayout(20, 1, 0, 0));
+		// JScrollPane scrollBar = new JScrollPane(panel);
+		// scrollBar
+		// .setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		// contentPane.add(scrollBar, BorderLayout.EAST);
+		panel.setVisible(false);
+		panel.removeAll();
+		System.out.println("BaseUI/setButtons rolesSize:" + roles.size());
+
+		for (RoleBean butId : roles) {
+			panel.add(button[butId.getNumber()]);
+		}
+		panel.setVisible(true);
+		this.repaint();
+
 	}
 
 }

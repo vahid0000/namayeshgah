@@ -1,34 +1,30 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.model.entity;
+package edu.sharif.ce.ood.taghi.namayeshgah.controller.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.PropertyStatus;
 
+public class PropertyBean {
 
-@Entity(name="Property")
-public class PropertyEntity extends BaseEntity<Integer> {
-
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-
-	@Column(name = "subject")
 	private String subject;
-	
-	@Column(name = "description")
 	private String description;
-	
-	@Column(name = "propertyStatus")
 	private PropertyStatus propertyStatus;
 
-	
-	
-	
+	public PropertyBean(PropertyEntity propertyEntity) {
+		this.id = propertyEntity.getId();
+		this.subject = propertyEntity.getSubject();
+		this.description = propertyEntity.getDescription();
+		this.propertyStatus = propertyEntity.getPropertyStatus();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getSubject() {
 		return subject;
 	}
@@ -51,17 +47,6 @@ public class PropertyEntity extends BaseEntity<Integer> {
 
 	public void setPropertyStatus(PropertyStatus propertyStatus) {
 		this.propertyStatus = propertyStatus;
-	}
-
-	@Override
-	public Integer getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Integer id) {
-		this.id=id;
-
 	}
 
 }

@@ -13,6 +13,8 @@ import javax.persistence.OrderColumn;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ProcessBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.UserBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
@@ -22,26 +24,60 @@ import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ImplementationStatus;
 
 public class ShowPlaceDao extends GenericHibernateDAO<ShowPlaceEntity, Integer> {
-	
-	public ShowPlaceEntity addShowPlace(String name, String defSummary, String definition, String owner, List<String> groupManager) {
+
+	public ShowPlaceEntity addShowPlace(String name, String defSummary,
+			String definition, String owner, List<String> groupManager) {
 		ShowPlaceEntity entity = new ShowPlaceEntity();
 		entity.setName(name);
 		entity.setDefSummary(defSummary);
-		entity.setDefinition(definition);		
+		entity.setDefinition(definition);
 		entity.setOwner(owner);
 		entity.setImplementationStatus(ImplementationStatus.builded);
 		entity.setBoothes(null);
 		entity.setPeopleReports(null);
 		entity.setProcesses(null);
 		entity.setProperties(null);
-		for(String gname: groupManager){
-			Set<UserEntity> userList= new HashSet<UserEntity>();
-			userList.add( FactoryDAO.getInstance().getUserDao()
-					.getUserByName(gname));
-			entity.setUsers(userList);
+		Set<UserEntity> userList = new HashSet<UserEntity>();
+		for (String gname : groupManager) {
+			UserEntity user = FactoryDAO.getInstance().getUserDao()
+					.getUserByName(gname);
+			UserBean userBean = new UserBean(user);
+			userList.add(user);
 		}
+		entity.setUsers(userList);
 		this.makePersistent(entity);
+
+		for (String gname : groupManager) {
+			UserEntity user = FactoryDAO.getInstance().getUserDao()
+					.getUserByName(gname);
+			FactoryDAO.getInstance().getRoleDao().addRole(24,user,entity);
+			FactoryDAO.getInstance().getRoleDao().addRole(16,user,entity);
+			FactoryDAO.getInstance().getRoleDao().addRole(23,user,entity);
+			FactoryDAO.getInstance().getRoleDao().addRole(25,user,entity);
+			FactoryDAO.getInstance().getRoleDao().addRole(26,user,entity);
+			FactoryDAO.getInstance().getRoleDao().addRole(27,user,entity);
+		}
 		return entity;
 	}
-	
+
+	public void setProcessesById(Integer id, List<ProcessBean> processes) {
+		ArrayList<ProcessEntity> processesEntities = new ArrayList<ProcessEntity>();
+		for (ProcessBean process : processes) {
+			processesEntities.add(FactoryDAO.getInstance().getProcessDao()
+					.findById(process.getId(), false));
+		}
+		ShowPlaceEntity showPlace = FactoryDAO.getInstance().getShowPlaceDao()
+				.findById(id, false);
+		System.out
+				.println("ShowPlaceDao/setProcessesById/ processesEntities.size():");
+		System.out
+				.println("ShowPlaceDao/setProcessesById/ before.processes.size():"
+						+ showPlace.getProcesses().size());
+
+		showPlace.setProcesses(processesEntities);
+		System.out
+				.println("ShowPlaceDao/setProcessesById/ after.processes.size():"
+						+ showPlace.getProcesses().size());
+
+	}
 }

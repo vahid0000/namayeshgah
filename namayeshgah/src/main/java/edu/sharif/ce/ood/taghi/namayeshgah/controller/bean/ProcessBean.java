@@ -1,29 +1,29 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.model.entity;
+package edu.sharif.ce.ood.taghi.namayeshgah.controller.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ProcessStatus;
-import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.RequestStatus;
 
-@Entity(name = "process")
-public class ProcessEntity extends BaseEntity<Integer> {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class ProcessBean {
 	private Integer id;
 
-	@Column(name = "name")
 	private String name;
-
-	@Column(name = "description")
 	private String description;
-
-	@Column(name = "processStatus")
 	private ProcessStatus processStatus;
+
+	public ProcessBean(ProcessEntity processEntity) {
+		this.id = processEntity.getId();
+		this.name = processEntity.getName();
+		this.description = processEntity.getDescription();
+		this.processStatus = processEntity.getProcessStatus();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -54,16 +54,4 @@ public class ProcessEntity extends BaseEntity<Integer> {
 		// TODO Auto-generated method stub
 		return this.name;
 	}
-
-	@Override
-	public Integer getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-
-	}
-
 }

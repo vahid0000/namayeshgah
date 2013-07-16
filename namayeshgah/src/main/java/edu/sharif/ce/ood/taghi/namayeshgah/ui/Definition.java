@@ -170,6 +170,7 @@ public class Definition extends BaseUI {
 							nameText.getText(), shortDescriptionText.getText(),
 							descriptionText.getText(), ownerText.getText(),
 							selectList.getSelectedItems());
+					Definition.this.dispose();
 				}
 			}
 		});

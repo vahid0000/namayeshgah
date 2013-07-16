@@ -72,8 +72,10 @@ public class SelectList<T> extends JPanel {
 	public void initialList(List<T> items) {
 		selectedItemsModel = new DefaultListModel<T>();
 		allItemsModel = new DefaultListModel<T>();
-		for (T item : items) {
-			allItemsModel.addElement(item);
+		if (items != null) {
+			for (T item : items) {
+				allItemsModel.addElement(item);
+			}
 		}
 		allItems.setModel(allItemsModel);
 		selectedItems.setModel(selectedItemsModel);
@@ -90,6 +92,26 @@ public class SelectList<T> extends JPanel {
 		}
 		System.out.println("Select List: get Selected Items:" + items);
 		return items;
+	}
+
+	public void moveUp() {
+		int index = this.selectedItems.getSelectedIndex();
+		T rightSelected = this.selectedItemsModel.getElementAt(index);
+		this.selectedItemsModel.remove(index);
+		if (index > 0)
+			index = index - 1;
+		this.selectedItemsModel.add(index, rightSelected);
+
+	}
+
+	public void moveDown() {
+		int index = this.selectedItems.getSelectedIndex();
+		T rightSelected = this.selectedItemsModel.getElementAt(index);
+		this.selectedItemsModel.remove(index);
+		if (index < this.selectedItemsModel.getSize() )
+			index = index + 1;
+		this.selectedItemsModel.add(index, rightSelected);
+
 	}
 
 }
