@@ -1,34 +1,19 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.factories.FormFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
+import net.miginfocom.swing.MigLayout;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.ShowPlaceCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.UserCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
-
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JButton;
-import java.awt.Canvas;
-import java.awt.Font;
-import java.util.List;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class Home extends BaseUI implements ItemListener {
 

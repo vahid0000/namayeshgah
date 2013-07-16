@@ -167,7 +167,8 @@ public class BaseUI extends JFrame {
 		button[10] = new JButton("تخصیص سالن و غرفه");
 		button[10].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new ManageRequest();
+				JFrame frame = new ManageRequest(ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
@@ -212,7 +213,8 @@ public class BaseUI extends JFrame {
 		button[15] = new JButton("درخواست");
 		button[15].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new ManageRequest();
+				JFrame frame = new ManageRequest(ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
@@ -222,7 +224,7 @@ public class BaseUI extends JFrame {
 		button[16].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFrame frame = new StartShowPlace(ShowPlaceCatalog
-						.getInstance().getAllShowPlaces());
+						.getInstance().getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
