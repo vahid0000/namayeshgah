@@ -34,8 +34,16 @@ public class FactoryDAO {
 	public ConstRoleDao getConstRoleDao() {
 		return (ConstRoleDao) instantiateDAO(ConstRoleDao.class);
 	}
+
 	public ProcessLogDao getProcessLogDao() {
 		return (ProcessLogDao) instantiateDAO(ProcessLogDao.class);
+	}
+
+	public PropertyDao getPropertyDao() {
+		return (PropertyDao) instantiateDAO(PropertyDao.class);
+	}
+	public PropertyLogDao getPropertyLogDao() {
+		return (PropertyLogDao) instantiateDAO(PropertyLogDao.class);
 	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {

@@ -6,10 +6,12 @@ import javax.swing.JFrame;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ProcessDao;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.PropertyDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.ShowPlaceDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.UserDao;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ConstRoleEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RoleEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
@@ -53,14 +55,28 @@ public class App {
 		System.out.println("Hello World!");
 
 		HibernateUtil.getCurrentSession().beginTransaction();
-//		UserEntity entity = FactoryDAO.getInstance().getUserDao()
-//				.findById(1, false);
-		addUsers();
+		// UserEntity entity = FactoryDAO.getInstance().getUserDao()
+		// .findById(1, false);
+		// addUsers();
 		// addShowPlace();
-		addProcesses();
-		addRoles();
-//		System.out.println(entity.getLastName());
+		// addProcesses();
+		// addRoles();
+		addProperties();
+		// System.out.println(entity.getLastName());
 		HibernateUtil.commitTransaction();
+
+	}
+
+	private static void addProperties() {
+		PropertyEntity property1 = new PropertyEntity();
+		property1.setSubject("property1 s");
+		property1.setDescription("propery1 des");
+		PropertyDao pd = new PropertyDao();
+		pd.makePersistent(property1);
+		PropertyEntity property2 = new PropertyEntity();
+		property2.setSubject("property2 s");
+		property2.setDescription("propery2 des");
+		pd.makePersistent(property2);
 
 	}
 
@@ -72,7 +88,6 @@ public class App {
 				.findById(1, false));
 		FactoryDAO.getInstance().getConstRoleDao().makePersistent(cRole);
 
-		
 		cRole = new ConstRoleEntity();
 		cRole.setName("مدیریت فرآیندها");
 		cRole.setNumber(23);
@@ -80,7 +95,6 @@ public class App {
 				.findById(1, false));
 		FactoryDAO.getInstance().getConstRoleDao().makePersistent(cRole);
 
-		
 		cRole = new ConstRoleEntity();
 		cRole.setName("تعریف نمایشگاه");
 		cRole.setNumber(24);
@@ -88,7 +102,6 @@ public class App {
 				.findById(1, false));
 		FactoryDAO.getInstance().getConstRoleDao().makePersistent(cRole);
 
-		
 		cRole = new ConstRoleEntity();
 		cRole.setName("ویژگی ها");
 		cRole.setNumber(25);

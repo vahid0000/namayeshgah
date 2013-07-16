@@ -285,8 +285,7 @@ public class BaseUI extends JFrame {
 		button[23].setFont(new Font("Tahoma", Font.PLAIN, 11));
 		button[23].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 JFrame frame = new
-				 ManageProcess(ShowPlaceCatalog.getInstance()
+				JFrame frame = new ManageProcess(ShowPlaceCatalog.getInstance()
 						.getAllShowPlaces(), ShowPlaceCatalog.getInstance()
 						.getCurrentShowPlace());
 				frame.setVisible(true);
@@ -316,7 +315,9 @@ public class BaseUI extends JFrame {
 		button[25].setFont(new Font("Tahoma", Font.PLAIN, 11));
 		button[25].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new Properties();
+				JFrame frame = new Properties(ShowPlaceCatalog.getInstance()
+						.getAllShowPlaces(), ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});

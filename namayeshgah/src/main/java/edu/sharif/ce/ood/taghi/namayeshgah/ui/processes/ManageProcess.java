@@ -3,25 +3,28 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui.processes;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
+
 import com.jgoodies.forms.factories.FormFactory;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.Sizes;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.LogCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.ProcessCatalog;
@@ -30,20 +33,8 @@ import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ProcessBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
-import edu.sharif.ce.ood.taghi.namayeshgah.ui.Definition;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelecTshowPlaceCombo;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelectList;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import com.jgoodies.forms.layout.Sizes;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ManageProcess extends BaseUI implements ItemListener {
 
@@ -98,13 +89,16 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, "2, 2, fill, fill");
 		panel_2.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.GLUE_COLSPEC, FormFactory.GLUE_COLSPEC,
-				FormFactory.GLUE_COLSPEC, }, new RowSpec[] {
-				FormFactory.GLUE_ROWSPEC, RowSpec.decode("20dlu"), }));
+				FormFactory.DEFAULT_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.GLUE_ROWSPEC,
+				RowSpec.decode("20dlu"),}));
 
 		historylist = new JList<String>();
 		panel_2.add(historylist, "2, 1, fill, fill");
-//		initialHistory(currentShowPlace);
+		initialHistory(currentShowPlace);
 
 		JLabel label_1 = new JLabel("تاریخچه");
 		panel_2.add(label_1, "3, 1, default, top");
@@ -113,6 +107,8 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		panel.add(panel_1, "2, 3, fill, fill");
 		showPlaces.add(0, new ShowPlaceBean("--"));
 		panel_1.setLayout(new MigLayout("", "[grow][][grow]", "[88px,grow]"));
+		
+//		
 		SelecTshowPlaceCombo<ShowPlaceBean> comboBox = new SelecTshowPlaceCombo<ShowPlaceBean>(
 				showPlaces, this);
 		panel_1.add(comboBox, "cell 0 0,alignx left,aligny top");

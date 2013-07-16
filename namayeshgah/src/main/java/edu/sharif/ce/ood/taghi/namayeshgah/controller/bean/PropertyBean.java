@@ -49,4 +49,8 @@ public class PropertyBean {
 		this.propertyStatus = propertyStatus;
 	}
 
+	@Override
+	public String toString() {
+		return this.subject;
+	}
 }

@@ -114,4 +114,20 @@ public class ShowPlaceBean {
 		return myProcesses;
 	}
 
+	public List<PropertyBean> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(List<PropertyBean> properties) {
+		this.properties = properties;
+		HibernateUtil.getCurrentSession().beginTransaction();
+		FactoryDAO.getInstance().getShowPlaceDao()
+				.setPropertyById(this.id, this.properties);
+		FactoryDAO.getInstance().getPropertyLogDao().addNewLog(this, this.properties);
+
+		HibernateUtil.commitTransaction();
+	}
+
+	
+
 }
