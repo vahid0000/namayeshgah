@@ -11,6 +11,7 @@ import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RequestEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ImplementationStatus;
@@ -123,11 +124,45 @@ public class ShowPlaceBean {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		FactoryDAO.getInstance().getShowPlaceDao()
 				.setPropertyById(this.id, this.properties);
-		FactoryDAO.getInstance().getPropertyLogDao().addNewLog(this, this.properties);
+		FactoryDAO.getInstance().getPropertyLogDao()
+				.addNewLog(this, this.properties);
 
 		HibernateUtil.commitTransaction();
 	}
 
-	
+	public List<RequestBean> getRequests(ShowPlaceBean showPlace) {
+		HibernateUtil.getCurrentSession().beginTransaction();
+		List<RequestEntity> requests = FactoryDAO.getInstance()
+				.getShowPlaceDao().findByShowPlaceBean(showPlace).getRequests();
+		ArrayList<RequestBean> requestBeans = new ArrayList<RequestBean>();
+		System.out.println("ShowPlaceBean/getRequests/ requests.size"
+				+ requests.size());
+		for (RequestEntity entity : requests) {
+			requestBeans.add(new RequestBean(entity));
+		}
+		HibernateUtil.commitTransaction();
+		return requestBeans;
+
+	}
+
+	public void Start() {
+		HibernateUtil.getCurrentSession().beginTransaction();
+		ShowPlaceEntity entity = FactoryDAO.getInstance().getShowPlaceDao()
+				.findByShowPlaceBean(this);
+		entity.setImplementationStatus(implementationStatus.running);
+		FactoryDAO.getInstance().getShowPlaceDao().makePersistent(entity);
+		HibernateUtil.commitTransaction();
+
+	}
+
+	public void End() {
+		HibernateUtil.getCurrentSession().beginTransaction();
+		ShowPlaceEntity entity = FactoryDAO.getInstance().getShowPlaceDao()
+				.findByShowPlaceBean(this);
+		entity.setImplementationStatus(implementationStatus.finished);
+		FactoryDAO.getInstance().getShowPlaceDao().makePersistent(entity);
+		HibernateUtil.commitTransaction();
+
+	}
 
 }

@@ -32,6 +32,8 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        
         <property name="connection.url">jdbc:mysql://127.0.0.1/ood?characterEncoding=utf8</property>
         <property name="connection.username">root</property>
         <property name="connection.password">mysql</property>
@@ -75,6 +77,8 @@
         <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.StoreStuffEntity"/>
         <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.UserEntity"/>
         <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ValidationRuleEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.RoleEntity"/>
+        <mapping class="edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ConstRoleEntity"/>
         
     </session-factory>
 

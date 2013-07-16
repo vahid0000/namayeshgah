@@ -21,13 +21,32 @@ public class FilesEntity extends BaseEntity<Integer> {
 	@JoinColumn(name = "newsEntity")
 	private NewsEntity news;
 
+	
+	
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public NewsEntity getNews() {
+		return news;
+	}
+
+	public void setNews(NewsEntity news) {
+		this.news = news;
+	}
+
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 
 	}

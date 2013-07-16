@@ -15,9 +15,11 @@ import org.hibernate.criterion.Restrictions;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ProcessBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.PropertyBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.UserBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.BoothEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PhoneNumberEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PropertyEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
@@ -99,5 +101,9 @@ public class ShowPlaceDao extends GenericHibernateDAO<ShowPlaceEntity, Integer> 
 				.println("ShowPlaceDao/setProcessesById/ after.Property.size():"
 						+ showPlace.getProcesses().size());
 
+	}
+
+	public ShowPlaceEntity findByShowPlaceBean(ShowPlaceBean currentShowPlace) {
+		return this.findById(currentShowPlace.getId(), false);
 	}
 }

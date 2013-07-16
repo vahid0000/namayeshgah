@@ -57,10 +57,10 @@ public class App {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		// UserEntity entity = FactoryDAO.getInstance().getUserDao()
 		// .findById(1, false);
-		// addUsers();
-		// addShowPlace();
-		// addProcesses();
-		// addRoles();
+		 addUsers();
+//		 addShowPlace();
+		 addProcesses();
+		 addRoles();
 		addProperties();
 		// System.out.println(entity.getLastName());
 		HibernateUtil.commitTransaction();

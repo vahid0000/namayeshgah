@@ -70,8 +70,9 @@ public class Home extends BaseUI implements ItemListener {
 		SelecTshowPlaceCombo<ShowPlaceBean> selecTshowPlaceCombo = new SelecTshowPlaceCombo<ShowPlaceBean>(
 				ShowPlaceCatalog.getInstance().getAllShowPlaces(), this);
 		panel.add(selecTshowPlaceCombo, "cell 0 1,alignx center,growy");
-		ShowPlaceCatalog.getInstance().setCurrentShowPlace(
-				ShowPlaceCatalog.getInstance().getAllShowPlaces().get(0));
+		if (ShowPlaceCatalog.getInstance().getAllShowPlaces().size() > 0)
+			ShowPlaceCatalog.getInstance().setCurrentShowPlace(
+					ShowPlaceCatalog.getInstance().getAllShowPlaces().get(0));
 		this.setButtons(UserCatalog.getInstance()
 				.getRolesOfLoggedInUserByShowPlace(
 						ShowPlaceCatalog.getInstance().getCurrentShowPlace()));
@@ -86,7 +87,7 @@ public class Home extends BaseUI implements ItemListener {
 		this.setButtons(UserCatalog.getInstance()
 				.getRolesOfLoggedInUserByShowPlace(newShowPlace));
 		ShowPlaceCatalog.getInstance().setCurrentShowPlace(newShowPlace);
-	
+
 	}
 
 }

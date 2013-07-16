@@ -42,6 +42,8 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	
 	@OneToMany(mappedBy = "showPlace")
 	private List<PeopleReportEntity> peopleReports;
+	@OneToMany(mappedBy = "showPlace")
+	private List<RequestEntity> requests;
 
 	@ManyToMany
 	@OrderColumn(name = "processes")
@@ -51,7 +53,7 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	@OrderColumn(name = "properties")
 	private List<PropertyEntity> properties;
 
-	@ManyToMany
+	@ManyToMany()
 	@OrderColumn(name="users")
 	private Set<UserEntity> users;
 
@@ -136,6 +138,16 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 
 	public void setUsers(Set<UserEntity> users) {
 		this.users = users;
+	}
+	
+	
+
+	public List<RequestEntity> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<RequestEntity> requests) {
+		this.requests = requests;
 	}
 
 	@Override

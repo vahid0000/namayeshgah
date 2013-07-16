@@ -22,6 +22,8 @@ public class RequestEntity extends BaseEntity<Integer> {
 
 	@Column(name = "description")
 	private String description;
+	@Column(name = "replay", nullable = true)
+	private String replay;
 
 	@Column(name = "requestStatus")
 	private RequestStatus requestStatus;
@@ -31,6 +33,16 @@ public class RequestEntity extends BaseEntity<Integer> {
 	private ShowPlaceEntity showPlace;
 
 	
+	
+	
+	public String getReplay() {
+		return replay;
+	}
+
+	public void setReplay(String replay) {
+		this.replay = replay;
+	}
+
 	public ShowPlaceEntity getShowPlace() {
 		return showPlace;
 	}
@@ -64,12 +76,12 @@ public class RequestEntity extends BaseEntity<Integer> {
 	}
 
 	@Override
-	Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@Override
-	void setId(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 
 	}

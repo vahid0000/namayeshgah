@@ -52,6 +52,16 @@ public class ShowPlaceCatalog {
 	public void setCurrentShowPlace(ShowPlaceBean currentShowPlace) {
 		this.currentShowPlace = currentShowPlace;
 	}
-	
-	
+
+	public void addNewRequest(String subject, String description,
+			ShowPlaceBean currentShowPlace) {
+
+		HibernateUtil.getCurrentSession().beginTransaction();
+
+		FactoryDAO.getInstance().getRequestDao()
+				.addNewRequest(subject, description, currentShowPlace);
+		HibernateUtil.commitTransaction();
+
+	}
+
 }

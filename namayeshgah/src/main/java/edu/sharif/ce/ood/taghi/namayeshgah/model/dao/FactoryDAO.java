@@ -42,8 +42,25 @@ public class FactoryDAO {
 	public PropertyDao getPropertyDao() {
 		return (PropertyDao) instantiateDAO(PropertyDao.class);
 	}
+
 	public PropertyLogDao getPropertyLogDao() {
 		return (PropertyLogDao) instantiateDAO(PropertyLogDao.class);
+	}
+
+	public NewsDao getNewsDao() {
+		return (NewsDao) instantiateDAO(NewsDao.class);
+	}
+
+	public FileDao getFileDao() {
+		return (FileDao) instantiateDAO(FileDao.class);
+	}
+
+	public PhoneNumberDao getPhoneNumberDao() {
+		return (PhoneNumberDao) instantiateDAO(PhoneNumberDao.class);
+	}
+
+	public RequestDao getRequestDao() {
+		return (RequestDao) instantiateDAO(RequestDao.class);
 	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {

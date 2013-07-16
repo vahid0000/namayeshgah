@@ -1,40 +1,35 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.ui.request;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JComboBox;
-import javax.swing.BoxLayout;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.factories.FormFactory;
-
-import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
-
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
-import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import net.miginfocom.swing.MigLayout;
+import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.RequestBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ManageRequest extends BaseUI {
-	private JTextField textField;
+	private JTextField subjectText;
+	private JList<RequestBean> list;
+	private JTextArea descriptionText;
+	private JTextArea replyText;
 
 	// private JPanel contentPane;
 
@@ -45,7 +40,11 @@ public class ManageRequest extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManageRequest frame = new ManageRequest();
+					HibernateUtil.getCurrentSession().beginTransaction();
+					ShowPlaceBean a = new ShowPlaceBean(FactoryDAO
+							.getInstance().getShowPlaceDao().findById(1, false));
+					HibernateUtil.commitTransaction();
+					ManageRequest frame = new ManageRequest(a);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +56,7 @@ public class ManageRequest extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public ManageRequest() {
+	public ManageRequest(ShowPlaceBean currentShowPlace) {
 		super();
 		setTitle("مدیریت درخواست ها");
 
@@ -66,42 +65,67 @@ public class ManageRequest extends BaseUI {
 		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]",
 				"[][grow][][][grow][grow][]"));
 
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "cell 1 0,alignx right");
-
-		JLabel label_4 = new JLabel("نمایشگاه");
-		panel.add(label_4, "cell 2 0");
-
-		JList list = new JList();
+		list = new JList<RequestBean>();
+		list.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				subjectText.setText(list.getSelectedValue().getSubject());
+				descriptionText.setText(list.getSelectedValue()
+						.getDescription());
+			}
+		});
 		panel.add(list, "cell 1 1,grow");
+		initialList(currentShowPlace);
 
 		JLabel label = new JLabel("درخواست ها");
 		panel.add(label, "cell 2 1,aligny top");
 
-		textField = new JTextField();
-		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField, "cell 1 3,growx");
-		textField.setColumns(10);
+		subjectText = new JTextField();
+		subjectText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(subjectText, "cell 1 3,growx");
+		subjectText.setColumns(10);
 
 		JLabel label_1 = new JLabel("عنوان");
 		panel.add(label_1, "cell 2 3");
 
-		JTextArea textArea = new JTextArea();
-		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textArea, "cell 1 4,grow");
+		descriptionText = new JTextArea();
+		descriptionText
+				.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(descriptionText, "cell 1 4,grow");
 
 		JLabel label_2 = new JLabel("شرح");
 		panel.add(label_2, "cell 2 4,aligny top");
 
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textArea_1, "cell 1 5,grow");
+		replyText = new JTextArea();
+		replyText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(replyText, "cell 1 5,grow");
 
 		JLabel label_3 = new JLabel("پاسخ");
 		panel.add(label_3, "cell 2 5,aligny top");
 
 		JButton button = new JButton("پاسخ");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int permition = JOptionPane.showConfirmDialog(
+						ManageRequest.this,
+						"آیا صحت اطلاعات وارد شده را تایید می کنید؟",
+						"تایید صحت اطلاعات", JOptionPane.YES_NO_OPTION);
+
+				if (permition == 0) {
+					list.getSelectedValue().setReply(replyText.getText());
+				}
+			}
+		});
 		panel.add(button, "flowx,cell 1 6");
+	}
+
+	public void initialList(ShowPlaceBean showPlace) {
+		List<RequestBean> requests = showPlace.getRequests(showPlace);
+		DefaultListModel<RequestBean> model = new DefaultListModel<RequestBean>();
+		for (RequestBean bean : requests) {
+			model.addElement(bean);
+		}
+		list.setModel(model);
 	}
 
 }

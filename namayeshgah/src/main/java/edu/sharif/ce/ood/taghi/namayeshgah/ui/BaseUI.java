@@ -89,7 +89,8 @@ public class BaseUI extends JFrame {
 		button[1] = new JButton("اطلاع رسانی");
 		button[1].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new Publish();
+				JFrame frame = new Publish(ShowPlaceCatalog.getInstance()
+						.getCurrentShowPlace());
 				frame.setVisible(true);
 			}
 		});
