@@ -23,18 +23,23 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
+
 import java.awt.Color;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Login extends BaseUI {
 	private JTextField userNameTextField;
-	private JTextField passTextField;
+	private JPasswordField passTextField;
 
 	// private JPanel contentPane;
 
@@ -75,7 +80,25 @@ public class Login extends BaseUI {
 		JLabel label = new JLabel("نام کاربری");
 		panel.add(label, "cell 2 1");
 
-		passTextField = new JTextField();
+		passTextField = new JPasswordField();
+		passTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg) {
+				if (arg.getKeyCode() == KeyEvent.VK_ENTER) {
+					boolean result = UserCatalog.getInstance().login(
+							userNameTextField.getText(),
+							passTextField.getText());
+					if (result == false)
+						erorrLabel.setText("نام کاربری یا کلمه عبور غلط است");
+					else {
+						JFrame frame = new Home();
+						frame.setVisible(true);
+						Login.this.dispose();
+
+					}
+				}
+			}
+		});
 		panel.add(passTextField, "cell 1 3,growx");
 		passTextField.setColumns(10);
 

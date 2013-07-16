@@ -3,8 +3,9 @@ package edu.sharif.ce.ood.taghi.namayeshgah.model.dao;
 import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
 
 public class FactoryDAO {
-	
-	private FactoryDAO(){}
+
+	private FactoryDAO() {
+	}
 
 	private static FactoryDAO factoryDAO;
 
@@ -13,13 +14,28 @@ public class FactoryDAO {
 			factoryDAO = new FactoryDAO();
 		return factoryDAO;
 	}
-	
+
 	public UserDao getUserDao() {
-		return (UserDao) instantiateDAO(UserDao.class);	
+		return (UserDao) instantiateDAO(UserDao.class);
 	}
-	
+
 	public ShowPlaceDao getShowPlaceDao() {
-		return (ShowPlaceDao) instantiateDAO(ShowPlaceDao.class);	
+		return (ShowPlaceDao) instantiateDAO(ShowPlaceDao.class);
+	}
+
+	public ProcessDao getProcessDao() {
+		return (ProcessDao) instantiateDAO(ProcessDao.class);
+	}
+
+	public RoleDao getRoleDao() {
+		return (RoleDao) instantiateDAO(RoleDao.class);
+	}
+
+	public ConstRoleDao getConstRoleDao() {
+		return (ConstRoleDao) instantiateDAO(ConstRoleDao.class);
+	}
+	public ProcessLogDao getProcessLogDao() {
+		return (ProcessLogDao) instantiateDAO(ProcessLogDao.class);
 	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {

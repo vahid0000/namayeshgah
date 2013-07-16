@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.RequestStatus;
 
@@ -17,17 +19,26 @@ public class RequestEntity extends BaseEntity<Integer> {
 
 	@Column(name = "subject")
 	private String subject;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "requestStatus")
 	private RequestStatus requestStatus;
 
+	@ManyToOne
+	@JoinColumn(name = "showPlace")
+	private ShowPlaceEntity showPlace;
+
 	
-	
-	
-	
+	public ShowPlaceEntity getShowPlace() {
+		return showPlace;
+	}
+
+	public void setShowPlace(ShowPlaceEntity showPlace) {
+		this.showPlace = showPlace;
+	}
+
 	public String getSubject() {
 		return subject;
 	}
