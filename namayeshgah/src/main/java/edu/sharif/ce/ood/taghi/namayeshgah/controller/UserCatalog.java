@@ -84,7 +84,7 @@ public class UserCatalog {
 			ArrayList<RoleBean> roles = new ArrayList<RoleBean>();
 			// TODO: retrieve from database
 			roles.add(new RoleBean("portal", 2));
-			roles.add(new RoleBean("portal", 8));
+			roles.add(new RoleBean("portal", 15));
 			roles.add(new RoleBean("portal", 10));
 			roles.add(new RoleBean("portal", 13));
 			roles.add(new RoleBean("portal", 15));

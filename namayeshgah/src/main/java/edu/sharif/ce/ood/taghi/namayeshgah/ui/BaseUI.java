@@ -31,8 +31,8 @@ import edu.sharif.ce.ood.taghi.namayeshgah.ui.publish.Publish;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.report.AddReport;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.report.ReportShowPlace;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.request.ManageRequest;
-import edu.sharif.ce.ood.taghi.namayeshgah.ui.request.RequestSaloon;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.request.RequestShowPlace;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.request.RequestBooth;
 
 public class BaseUI extends JFrame {
 
@@ -163,26 +163,26 @@ public class BaseUI extends JFrame {
 
 		// panel.add(button[7]);
 
-		button[8] = new JButton("شرکت در نمایشگاه");
-		button[8].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new RequestShowPlace();
-				frame.setVisible(true);
-				BaseUI.this.dispose();
-			}
-		});
-		// panel.add(button[8]);
+//		button[8] = new JButton("شرکت در نمایشگاه");
+//		button[8].addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				JFrame frame = new RequestShowPlace();
+//				frame.setVisible(true);
+//				BaseUI.this.dispose();
+//			}
+//		});
+//		// panel.add(button[8]);
+//
+//		button[9] = new JButton("درخواست غرفه و سالن");
+//		button[9].addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				JFrame frame = new RequestBooth();
+//				frame.setVisible(true);
+//				BaseUI.this.dispose();
+//			}
+//		});
 
-		button[9] = new JButton("درخواست غرفه و سالن");
-		button[9].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new RequestSaloon();
-				frame.setVisible(true);
-				BaseUI.this.dispose();
-			}
-		});
-
-		button[9].setFont(new Font("Tahoma", Font.PLAIN, 10));
+//		button[9].setFont(new Font("Tahoma", Font.PLAIN, 10));
 		// panel.add(button[9]);
 
 		button[10] = new JButton("تخصیص سالن و غرفه");
@@ -278,14 +278,14 @@ public class BaseUI extends JFrame {
 		});
 		// panel.add(button[18]);
 
-		button[19] = new JButton("ارسال خبر");
-		button[19].addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new News();
-				frame.setVisible(true);
-				BaseUI.this.dispose();
-			}
-		});
+//		button[19] = new JButton("ارسال خبر");
+//		button[19].addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				JFrame frame = new News();
+//				frame.setVisible(true);
+//				BaseUI.this.dispose();
+//			}
+//		});
 		// panel.add(button[19]);
 
 
@@ -402,14 +402,18 @@ public class BaseUI extends JFrame {
 		JButton button_1 = new JButton("خروج");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				UserCatalog.getInstance().setLogginedUser(null);
 				Login frame = new Login();
 				frame.setVisible(true);
-				UserCatalog.getInstance().setLogginedUser(null);
 				BaseUI.this.dispose();
 			}
 		});
+		panel_2.add(button_1);
 		if (UserCatalog.getInstance().getLogginedUser() != null)
-			panel_2.add(button_1);
+			button_1.setText("خروج");
+		else
+			button_1.setText("ورود");
+			
 		CalendarTool ct = new CalendarTool(new Date());
 		if (ShowPlaceCatalog.getInstance().getAllShowPlaces().size() > 0
 				&& ShowPlaceCatalog.getInstance().getCurrentShowPlace() == null)
