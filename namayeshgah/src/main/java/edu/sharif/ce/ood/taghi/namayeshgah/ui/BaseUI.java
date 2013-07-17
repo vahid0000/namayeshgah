@@ -384,10 +384,10 @@ public class BaseUI extends JFrame {
 
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.SOUTH);
-		
-//		CalendarTool ct = new CalendarTool(new Date());
-//		JLabel ghamariLabel = new JLabel(ct.getGregorianDate());
-//		panel_2.add(ghamariLabel);
+
+		// CalendarTool ct = new CalendarTool(new Date());
+		// JLabel ghamariLabel = new JLabel(ct.getGregorianDate());
+		// panel_2.add(ghamariLabel);
 
 		JLabel label = new JLabel("1392/4/26");
 		panel_2.add(label);
@@ -439,6 +439,7 @@ public class BaseUI extends JFrame {
 		System.out.println("BaseUI/setButtons rolesSize:" + roles.size());
 
 		for (RoleBean butId : roles) {
+//			System.out.println("buuuuuuuuuuuuuuuut:" + butId.getNumber());
 			panel.add(button[butId.getNumber()]);
 		}
 		panel.setVisible(true);

@@ -32,7 +32,7 @@ public class NewsDao extends GenericHibernateDAO<NewsEntity, Integer> {
 
 	public void addPrivateNews(String text, ArrayList<PhoneBean> phones,
 			ShowPlaceBean currentShowPlace) {
-		
+
 		NewsEntity news = new NewsEntity();
 		news.setPublic(false);
 		news.setDescription(text);
@@ -51,8 +51,6 @@ public class NewsDao extends GenericHibernateDAO<NewsEntity, Integer> {
 		}
 
 	}
-	
-
 
 	public PrivateNewsBean getAllPrivateNewsByShowPlace(ShowPlaceBean showPlace) {
 		ShowPlaceEntity showPlaceEntity = FactoryDAO.getInstance()
@@ -70,5 +68,12 @@ public class NewsDao extends GenericHibernateDAO<NewsEntity, Integer> {
 		PrivateNewsBean news = new PrivateNewsBean(entity.getDescription(),
 				phones);
 		return news;
+	}
+
+	public List<NewsEntity> getAllPublicNews() {
+		DetachedCriteria criteria = DetachedCriteria.forClass(NewsEntity.class);
+		criteria.add(Restrictions.eq("isPublic", Boolean.TRUE));
+		List<NewsEntity> entities = this.findByDetachedCriteria(criteria);
+		return entities;
 	}
 }

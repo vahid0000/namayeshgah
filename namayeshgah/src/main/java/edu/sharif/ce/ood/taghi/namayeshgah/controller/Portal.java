@@ -1,14 +1,17 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.NewsBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.PhoneBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.PrivateNewsBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.NewsEntity;
 
 public class Portal {
 
@@ -55,6 +58,19 @@ public class Portal {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		PrivateNewsBean bean = FactoryDAO.getInstance().getNewsDao()
 				.getAllPrivateNewsByShowPlace(showPlace);
+		HibernateUtil.commitTransaction();
+		return bean;
+	}
+
+	public ArrayList<NewsBean> getAllPublicNews() {
+		HibernateUtil.getCurrentSession().beginTransaction();
+		List<NewsEntity> newses = FactoryDAO.getInstance().getNewsDao()
+				.getAllPublicNews();
+		System.out.println("PortalCatalog/getAllPublicNews/ newses.size:"+newses.size());
+		ArrayList<NewsBean> bean = new ArrayList<NewsBean>();
+		for (NewsEntity entity : newses) {
+			bean.add(new NewsBean(entity));
+		}
 		HibernateUtil.commitTransaction();
 		return bean;
 	}

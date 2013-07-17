@@ -70,14 +70,21 @@ public class FactoryDAO {
 	public PenaltyDao getPenaltyDao() {
 		return (PenaltyDao) instantiateDAO(PenaltyDao.class);
 	}
+
 	public StoreDao getStoreDao() {
 		return (StoreDao) instantiateDAO(StoreDao.class);
 	}
+
 	public FinancialDao getFinancialDao() {
 		return (FinancialDao) instantiateDAO(FinancialDao.class);
 	}
+
 	public PostDao getPostDao() {
 		return (PostDao) instantiateDAO(PostDao.class);
+	}
+
+	public ReportDao getReportDao() {
+		return (ReportDao) instantiateDAO(ReportDao.class);
 	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {

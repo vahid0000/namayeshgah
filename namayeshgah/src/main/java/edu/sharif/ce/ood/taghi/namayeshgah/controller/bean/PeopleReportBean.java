@@ -1,9 +1,5 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.controller.bean;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.PeopleReportEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ShowPlaceEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.PeopleReportStatus;
@@ -73,6 +69,11 @@ public class PeopleReportBean {
 
 	public void setShowPlace(ShowPlaceEntity showPlace) {
 		this.showPlace = showPlace;
+	}
+
+	@Override
+	public String toString() {
+		return this.name + " " + this.description;
 	}
 
 }
