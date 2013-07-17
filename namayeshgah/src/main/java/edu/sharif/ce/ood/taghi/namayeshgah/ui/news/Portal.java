@@ -38,7 +38,7 @@ public class Portal extends BaseUI {
 	 */
 	public Portal() {
 		super();
-		setTitle("انبار");
+		setTitle("پرتال");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -59,9 +59,6 @@ public class Portal extends BaseUI {
 		
 		JLabel label = new JLabel("متن");
 		panel_1.add(label, "cell 1 1,aligny top");
-		
-		JButton button = new JButton("ادامه خبر");
-		panel_1.add(button, "cell 0 2");
 	}
 
 }
