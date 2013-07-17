@@ -49,7 +49,7 @@ public class ImplementationProcess extends BaseUI {
 	 */
 	public ImplementationProcess() {
 		super();
-		setTitle("ویژگی ها");
+		setTitle("اجرای فرآیند پایه");
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);

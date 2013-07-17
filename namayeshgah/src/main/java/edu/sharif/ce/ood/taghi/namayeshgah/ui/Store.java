@@ -21,7 +21,6 @@ import javax.swing.border.LineBorder;
 import net.miginfocom.swing.MigLayout;
 import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.StoreCatalog;
-import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.BoothBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.StoreStuffBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
@@ -160,7 +159,7 @@ public class Store extends BaseUI {
 	}
 
 	private void initialList(ShowPlaceBean currentShowPlace) {
-		List<StoreStuffBean> stuffs = StoreCatalog.getInstance().getAllStuffs();
+		List<StoreStuffBean> stuffs = StoreCatalog.getInstance().getAllStuffs(currentShowPlace);
 		System.out.println("Store/ initialList/ stuffs.size" + stuffs.size());
 		DefaultListModel<StoreStuffBean> model = new DefaultListModel<StoreStuffBean>();
 		for (StoreStuffBean bean : stuffs) {

@@ -172,7 +172,7 @@ public class Financial extends BaseUI {
 
 	private void initialList(ShowPlaceBean currentShowPlace) {
 		List<ReceiptBean> stuffs = FinancialCatalog.getInstance()
-				.getAllReciepts();
+				.getAllReciepts(currentShowPlace);
 		System.out.println("financial/ initialList/ receipt.size"
 				+ stuffs.size());
 		DefaultListModel<ReceiptBean> model = new DefaultListModel<ReceiptBean>();

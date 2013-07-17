@@ -13,8 +13,8 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 public class Inputs extends BaseUI {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField nameText;
+	private JTextField valueText;
 
 	// private JPanel contentPane;
 
@@ -55,18 +55,18 @@ public class Inputs extends BaseUI {
 		JLabel label_1 = new JLabel("ثبت ورودی جدید");
 		panel.add(label_1, "cell 2 3");
 
-		textField = new JTextField();
-		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField, "cell 1 4,growx");
-		textField.setColumns(10);
+		nameText = new JTextField();
+		nameText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(nameText, "cell 1 4,growx");
+		nameText.setColumns(10);
 
 		JLabel label_2 = new JLabel("نام");
 		panel.add(label_2, "cell 2 4");
 
-		textField_1 = new JTextField();
-		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField_1, "cell 1 5,growx");
-		textField_1.setColumns(10);
+		valueText = new JTextField();
+		valueText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(valueText, "cell 1 5,growx");
+		valueText.setColumns(10);
 
 		JLabel label_3 = new JLabel("مقدار");
 		panel.add(label_3, "cell 2 5");

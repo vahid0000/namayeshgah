@@ -1,4 +1,4 @@
-package edu.sharif.ce.ood.taghi.namayeshgah.ui;
+package edu.sharif.ce.ood.taghi.namayeshgah.ui.request;
 
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
 
 import net.miginfocom.swing.MigLayout;
 

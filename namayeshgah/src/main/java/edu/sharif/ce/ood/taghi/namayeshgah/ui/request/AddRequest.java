@@ -44,10 +44,11 @@ import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelecTshowPlaceCombo;
 import java.util.List;
 import java.awt.event.ItemListener;
 
-public class AddRequest extends BaseUI {
+public class AddRequest extends BaseUI implements ItemListener {
 	private JTextField subjectText;
 	private JTextArea descriptionText;
 	private JList<RequestBean> list;
+	private ShowPlaceBean selectedShowPlace;
 
 	// private JPanel contentPane;
 
@@ -92,6 +93,13 @@ public class AddRequest extends BaseUI {
 		list.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		initialList(currentShowPlace);
 
+		SelecTshowPlaceCombo<ShowPlaceBean> selecTshowPlaceCombo = new SelecTshowPlaceCombo<ShowPlaceBean>(
+				ShowPlaceCatalog.getInstance().getAllShowPlaces(), this);
+		if (ShowPlaceCatalog.getInstance().getAllShowPlaces().size() > 0)
+			selectedShowPlace = ShowPlaceCatalog.getInstance()
+					.getAllShowPlaces().get(0);
+		panel.add(selecTshowPlaceCombo, "cell 1 0,grow");
+
 		panel.add(list, "cell 1 1,grow");
 
 		JLabel label = new JLabel("درخواست ها");
@@ -100,8 +108,7 @@ public class AddRequest extends BaseUI {
 		JButton button = new JButton("ایجاد درخواست جدید");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int permition = JOptionPane.showConfirmDialog(
-						AddRequest.this,
+				int permition = JOptionPane.showConfirmDialog(AddRequest.this,
 						"آیا صحت اطلاعات وارد شده را تایید می کنید؟",
 						"تایید صحت اطلاعات", JOptionPane.YES_NO_OPTION);
 
@@ -138,6 +145,13 @@ public class AddRequest extends BaseUI {
 			model.addElement(bean);
 		}
 		list.setModel(model);
+	}
+
+	public void itemStateChanged(ItemEvent evt) {
+		selectedShowPlace = (ShowPlaceBean) evt.getItem();
+		System.out.println("addRequest/itemStateChanged/ selectedShowPlace"
+				+ selectedShowPlace.getName());
+
 	}
 
 }

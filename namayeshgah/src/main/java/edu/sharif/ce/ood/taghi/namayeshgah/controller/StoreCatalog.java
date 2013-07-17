@@ -28,10 +28,10 @@ public class StoreCatalog {
 		HibernateUtil.commitTransaction();
 	}
 
-	public List<StoreStuffBean> getAllStuffs() {
+	public List<StoreStuffBean> getAllStuffs(ShowPlaceBean currentShowPlace) {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		List<StoreStuffEntity> entities = FactoryDAO.getInstance()
-				.getStoreDao().findAll();
+				.getStoreDao().getAllByShowPlace(currentShowPlace);
 		ArrayList<StoreStuffBean> stuffs = new ArrayList<StoreStuffBean>();
 		for (StoreStuffEntity entity : entities) {
 			stuffs.add(new StoreStuffBean(entity));

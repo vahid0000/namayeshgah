@@ -1,6 +1,10 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.model.dao;
 
 import java.util.Date;
+import java.util.List;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.StoreStuffEntity;
@@ -17,6 +21,16 @@ public class StoreDao extends GenericHibernateDAO<StoreStuffEntity, Integer> {
 				.findByShowPlaceBean(showPlace));
 		this.makePersistent(entity);
 
+	}
+
+	public List<StoreStuffEntity> getAllByShowPlace(
+			ShowPlaceBean currentShowPlace) {
+		DetachedCriteria criteria = DetachedCriteria
+				.forClass(StoreStuffEntity.class);
+		criteria.add(Restrictions.eq("showPlace", FactoryDAO.getInstance()
+				.getShowPlaceDao().findByShowPlaceBean(currentShowPlace)));
+		List<StoreStuffEntity> entities = this.findByDetachedCriteria(criteria);
+		return entities;
 	}
 
 }

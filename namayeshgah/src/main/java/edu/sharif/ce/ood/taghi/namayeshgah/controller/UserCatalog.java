@@ -61,6 +61,8 @@ public class UserCatalog {
 	// return logginedUser.getButtons();
 	// }
 	// }
+	
+	
 
 	public String getFullNameOfLoggedInUser() {
 		if (logginedUser == null)
@@ -68,13 +70,24 @@ public class UserCatalog {
 		return logginedUser.getFullname();
 	}
 
+	public UserBean getLogginedUser() {
+		return logginedUser;
+	}
+
+	public void setLogginedUser(UserBean logginedUser) {
+		this.logginedUser = logginedUser;
+	}
+
 	public List<RoleBean> getRolesOfLoggedInUserByShowPlace(
 			ShowPlaceBean currentShowPlace) {
 		if (logginedUser == null || currentShowPlace == null) {
 			ArrayList<RoleBean> roles = new ArrayList<RoleBean>();
 			// TODO: retrieve from database
-			roles.add(new RoleBean("portal", 20));
-			roles.add(new RoleBean("portal", 24));
+			roles.add(new RoleBean("portal", 2));
+			roles.add(new RoleBean("portal", 8));
+			roles.add(new RoleBean("portal", 10));
+			roles.add(new RoleBean("portal", 13));
+			roles.add(new RoleBean("portal", 15));
 			return roles;
 		}
 		return logginedUser.getButtonsByShowPlace(currentShowPlace);

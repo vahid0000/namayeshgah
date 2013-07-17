@@ -56,18 +56,12 @@ public class AddReport extends BaseUI {
 
 		JLabel label_1 = new JLabel("ثبت گزارش جدید");
 		panel.add(label_1, "cell 1 3,alignx center");
-
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "cell 1 4,alignx right");
-
-		JLabel label_4 = new JLabel("نمایشگاه");
-		panel.add(label_4, "cell 2 4");
-
-		JComboBox comboBox_1 = new JComboBox();
-		panel.add(comboBox_1, "cell 1 5,alignx right");
-
-		JLabel label_5 = new JLabel("سالن");
-		panel.add(label_5, "cell 2 5");
+		
+				JComboBox comboBox = new JComboBox();
+				panel.add(comboBox, "cell 1 5,alignx right");
+		
+				JLabel label_4 = new JLabel("نمایشگاه");
+				panel.add(label_4, "cell 2 5");
 
 		JComboBox comboBox_2 = new JComboBox();
 		panel.add(comboBox_2, "cell 1 6,alignx right");

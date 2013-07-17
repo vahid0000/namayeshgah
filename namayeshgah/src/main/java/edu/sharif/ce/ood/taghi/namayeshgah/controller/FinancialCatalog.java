@@ -30,10 +30,10 @@ public class FinancialCatalog {
 		HibernateUtil.commitTransaction();
 	}
 
-	public List<ReceiptBean> getAllReciepts() {
+	public List<ReceiptBean> getAllReciepts(ShowPlaceBean currentShowPlace) {
 		HibernateUtil.getCurrentSession().beginTransaction();
 		List<ReceiptEntity> entities = FactoryDAO.getInstance()
-				.getFinancialDao().findAll();
+				.getFinancialDao().findByShowPlace(currentShowPlace);
 		ArrayList<ReceiptBean> stuffs = new ArrayList<ReceiptBean>();
 		for (ReceiptEntity entity : entities) {
 			stuffs.add(new ReceiptBean(entity));
