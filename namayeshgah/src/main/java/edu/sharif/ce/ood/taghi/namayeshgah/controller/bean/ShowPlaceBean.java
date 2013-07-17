@@ -28,6 +28,7 @@ public class ShowPlaceBean {
 	private List<ProcessBean> processes;
 	private List<PropertyBean> properties;
 	private Set<UserBean> users;
+	private String map;
 
 	public ShowPlaceBean(ShowPlaceEntity entity) {
 		this.id = entity.getId();
@@ -61,6 +62,20 @@ public class ShowPlaceBean {
 		}
 
 	}
+
+	
+	
+	public String getMap() {
+		return map;
+	}
+
+
+
+	public void setMap(String map) {
+		this.map = map;
+	}
+
+
 
 	public ShowPlaceBean(String name) {
 		super();

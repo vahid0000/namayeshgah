@@ -76,6 +76,9 @@ public class FactoryDAO {
 	public FinancialDao getFinancialDao() {
 		return (FinancialDao) instantiateDAO(FinancialDao.class);
 	}
+	public PostDao getPostDao() {
+		return (PostDao) instantiateDAO(PostDao.class);
+	}
 
 	private GenericHibernateDAO instantiateDAO(Class daoClass) {
 		try {

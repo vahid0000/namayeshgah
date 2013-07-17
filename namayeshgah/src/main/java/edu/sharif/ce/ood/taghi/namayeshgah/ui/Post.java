@@ -3,7 +3,9 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.EventQueue;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -12,10 +14,21 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.PostCatalog;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.PostStuffBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Post extends BaseUI {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField subjectText;
+	private JTextField senderText;
+	private JList<PostStuffBean> list;
+	private JTextArea destinationText;
 
 	// private JPanel contentPane;
 
@@ -26,7 +39,12 @@ public class Post extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Post frame = new Post();
+					HibernateUtil.getCurrentSession().beginTransaction();
+					ShowPlaceBean a = new ShowPlaceBean(FactoryDAO
+							.getInstance().getShowPlaceDao().findById(1, false));
+
+					HibernateUtil.commitTransaction();
+					Post frame = new Post(a);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,17 +56,27 @@ public class Post extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Post() {
+	public Post(final ShowPlaceBean currentShowPlace) {
 		super();
 		setTitle("پست");
 
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new MigLayout("", "[][grow][50px:n:100px][]",
-				"[grow][][][][grow 20][grow 20]"));
+				"[grow][][][][grow][grow 20]"));
 
-		JList list = new JList();
+		list = new JList<PostStuffBean>();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				PostStuffBean stuff = list.getSelectedValue();
+				subjectText.setText(stuff.getName());
+				senderText.setText(stuff.getSender());
+				destinationText.setText(stuff.getDestination());
+
+			}
+		});
 		panel.add(list, "cell 1 0,grow");
+		initialList(currentShowPlace);
 
 		JLabel label = new JLabel("فیش ها");
 		panel.add(label, "cell 2 0,aligny top");
@@ -60,37 +88,52 @@ public class Post extends BaseUI {
 		panel.add(button_1, "cell 1 1");
 
 		JButton button_2 = new JButton("اضافه");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PostCatalog.getInstance().addStuff(subjectText.getText(),
+						senderText.getText(), destinationText.getText(),
+						currentShowPlace);
+				initialList(currentShowPlace);
+			}
+		});
 		panel.add(button_2, "cell 1 1");
 
-		textField = new JTextField();
-		textField.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField, "cell 1 2,growx");
-		textField.setColumns(10);
+		subjectText = new JTextField();
+		subjectText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(subjectText, "cell 1 2,growx");
+		subjectText.setColumns(10);
 
-		JLabel label_1 = new JLabel("شماره");
-		panel.add(label_1, "cell 2 2");
+		JLabel nameText = new JLabel("عنوان");
+		panel.add(nameText, "cell 2 2");
 
-		textField_1 = new JTextField();
-		textField_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textField_1, "cell 1 3,growx");
-		textField_1.setColumns(10);
+		senderText = new JTextField();
+		senderText.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(senderText, "cell 1 3,growx");
+		senderText.setColumns(10);
 
-		JLabel label_4 = new JLabel("متقاضی");
+		JLabel label_4 = new JLabel("فرستنده");
 		panel.add(label_4, "cell 2 3");
 
-		JTextArea textArea = new JTextArea();
-		textArea.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textArea, "cell 1 4,grow");
+		destinationText = new JTextArea();
+		destinationText
+				.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		panel.add(destinationText, "cell 1 4,grow");
 
-		JLabel label_2 = new JLabel("توضیحات");
-		panel.add(label_2, "cell 2 4,aligny top");
+		JLabel label_1 = new JLabel("آدرس مقصد");
+		panel.add(label_1, "cell 2 4");
+	}
 
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		panel.add(textArea_1, "cell 1 5,grow");
+	private void initialList(ShowPlaceBean currShowPlaceBean) {
+		List<PostStuffBean> stuffs = PostCatalog.getInstance()
+				.getAllPostStuffs(currShowPlaceBean);
+		System.out.println("acceptContact/initialList/ phones.size:"
+				+ stuffs.size());
+		DefaultListModel<PostStuffBean> model = new DefaultListModel<PostStuffBean>();
+		for (PostStuffBean phone : stuffs) {
+			model.addElement(phone);
+		}
 
-		JLabel label_3 = new JLabel("آدرس مقصد");
-		panel.add(label_3, "cell 2 5,aligny top");
+		list.setModel(model);
 	}
 
 }

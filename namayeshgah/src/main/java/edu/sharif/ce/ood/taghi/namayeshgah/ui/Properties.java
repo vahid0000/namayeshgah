@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -125,6 +126,8 @@ public class Properties extends BaseUI implements ItemListener {
 					currentShowPlace.setProperties(Properties.this.selectList
 							.getSelectedItems());
 					Properties.this.dispose();
+					JFrame frame = new Home();
+					frame.setVisible(true);
 
 				}
 			}

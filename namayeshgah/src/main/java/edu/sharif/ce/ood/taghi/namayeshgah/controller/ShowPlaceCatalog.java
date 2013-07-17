@@ -64,4 +64,9 @@ public class ShowPlaceCatalog {
 
 	}
 
+	public String getMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

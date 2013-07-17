@@ -2,16 +2,21 @@ package edu.sharif.ce.ood.taghi.namayeshgah.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
+import edu.sharif.ce.ood.taghi.namayeshgah.HibernateUtil;
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
+import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 
 public class Map extends BaseUI {
+	private JTextField textField;
 
 	// private JPanel contentPane;
 
@@ -22,7 +27,11 @@ public class Map extends BaseUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Map frame = new Map();
+					HibernateUtil.getCurrentSession().beginTransaction();
+					ShowPlaceBean a = new ShowPlaceBean(FactoryDAO
+							.getInstance().getShowPlaceDao().findById(1, false));
+					HibernateUtil.commitTransaction();
+					Map frame = new Map(a);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,31 +43,38 @@ public class Map extends BaseUI {
 	/**
 	 * Create the frame.
 	 */
-	public Map() {
+	public Map(ShowPlaceBean currentShowPlace) {
 		super();
 		setTitle("نقشه");
-		
+
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new MigLayout("", "[][grow][]", "[][grow][]"));
-		
-		JList list = new JList();
-		panel.add(list, "cell 1 1,grow");
-		
-		JButton button = new JButton("ویرایش");
-		panel.add(button, "flowx,cell 1 2,alignx center");
-		
-		JButton button_1 = new JButton("حذف");
-		panel.add(button_1, "cell 1 2");
-		
-		JButton button_2 = new JButton("اضافه");
-		panel.add(button_2, "cell 1 2");
-		
-		JComboBox comboBox = new JComboBox();
-		panel.add(comboBox, "flowx,cell 1 0,alignx center");
-		
-		JLabel label = new JLabel("نمایشگاه");
-		panel.add(label, "cell 1 0");
+		panel.setLayout(new MigLayout("", "[][grow][]", "[][][]"));
+
+		initialText(currentShowPlace);
+
+		JButton selecFile = new JButton("انتخاب فایل");
+		selecFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fc = new JFileChooser();
+				int returnVal = fc.showOpenDialog(Map.this);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					textField.setText(fc.getSelectedFile().getAbsolutePath());
+					System.out.println("file chooser:"
+							+ fc.getSelectedFile().getAbsolutePath());
+				}
+			}
+		});
+
+		textField = new JTextField();
+		panel.add(textField, "cell 1 1,growx");
+		textField.setColumns(10);
+		panel.add(selecFile, "cell 1 2,alignx center");
+	}
+
+	private void initialText(ShowPlaceBean currentShowPlace) {
+		textField.setText(currentShowPlace.getMap());
+
 	}
 
 }

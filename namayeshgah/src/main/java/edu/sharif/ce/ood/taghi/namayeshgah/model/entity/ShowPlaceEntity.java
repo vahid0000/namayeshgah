@@ -21,16 +21,18 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-//	 List<String> groupManager
+	// List<String> groupManager
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "defSummary")
 	private String defSummary;
-	
+
 	@Column(name = "definition")
 	private String definition;
-	
+	@Column(name = "map")
+	private String mapFile;
+
 	@Column(name = "owner")
 	private String owner;
 
@@ -39,7 +41,7 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 
 	@OneToMany(mappedBy = "showPlace")
 	private List<BoothEntity> boothes;
-	
+
 	@OneToMany(mappedBy = "showPlace")
 	private List<PeopleReportEntity> peopleReports;
 	@OneToMany(mappedBy = "showPlace")
@@ -54,7 +56,7 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	private List<PropertyEntity> properties;
 
 	@ManyToMany()
-	@OrderColumn(name="users")
+	@OrderColumn(name = "users")
 	private Set<UserEntity> users;
 
 	public String getName() {
@@ -73,8 +75,6 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 			ImplementationStatus implementationStatus) {
 		this.implementationStatus = implementationStatus;
 	}
-	
-	
 
 	public String getDefSummary() {
 		return defSummary;
@@ -139,8 +139,6 @@ public class ShowPlaceEntity extends BaseEntity<Integer> {
 	public void setUsers(Set<UserEntity> users) {
 		this.users = users;
 	}
-	
-	
 
 	public List<RequestEntity> getRequests() {
 		return requests;

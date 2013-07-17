@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -33,6 +34,7 @@ import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ProcessBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.bean.ShowPlaceBean;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.dao.FactoryDAO;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
+import edu.sharif.ce.ood.taghi.namayeshgah.ui.Home;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelecTshowPlaceCombo;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelectList;
 
@@ -89,12 +91,9 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, "2, 2, fill, fill");
 		panel_2.setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.DEFAULT_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormFactory.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormFactory.GLUE_ROWSPEC,
-				RowSpec.decode("20dlu"),}));
+				FormFactory.DEFAULT_COLSPEC, ColumnSpec.decode("default:grow"),
+				FormFactory.DEFAULT_COLSPEC, }, new RowSpec[] {
+				FormFactory.GLUE_ROWSPEC, RowSpec.decode("20dlu"), }));
 
 		historylist = new JList<String>();
 		panel_2.add(historylist, "2, 1, fill, fill");
@@ -107,8 +106,8 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		panel.add(panel_1, "2, 3, fill, fill");
 		showPlaces.add(0, new ShowPlaceBean("--"));
 		panel_1.setLayout(new MigLayout("", "[grow][][grow]", "[88px,grow]"));
-		
-//		
+
+		//
 		SelecTshowPlaceCombo<ShowPlaceBean> comboBox = new SelecTshowPlaceCombo<ShowPlaceBean>(
 				showPlaces, this);
 		panel_1.add(comboBox, "cell 0 0,alignx left,aligny top");
@@ -153,6 +152,8 @@ public class ManageProcess extends BaseUI implements ItemListener {
 					currentShowPlace.setProcesses(ManageProcess.this.selectList
 							.getSelectedItems());
 					ManageProcess.this.dispose();
+					JFrame frame = new Home();
+					frame.setVisible(true);
 
 				}
 
