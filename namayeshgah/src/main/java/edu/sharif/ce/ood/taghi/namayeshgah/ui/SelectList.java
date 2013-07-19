@@ -25,10 +25,7 @@ public class SelectList<T> extends JPanel {
 
 	ArrayList<String> items;
 
-	/**
-	 * Create the panel.
-	 */
-	public SelectList(List<T> items) {
+	private void init(List<T> items) {
 		setLayout(new GridLayout(0, 3, 0, 0));
 
 		allItems = new JList<T>();
@@ -43,6 +40,7 @@ public class SelectList<T> extends JPanel {
 		add(selectedItems);
 
 		add = new JButton("<اضافه");
+		add.setName("add");
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -56,6 +54,7 @@ public class SelectList<T> extends JPanel {
 		panel.add(add);
 
 		remove = new JButton("حذف>");
+		remove.setName("remove");
 		remove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				T item = selectedItemsModel.getElementAt(selectedItems
@@ -69,6 +68,10 @@ public class SelectList<T> extends JPanel {
 		this.initialList(items);
 	}
 
+	public T getSelectedFromAllItems(){
+		return allItems.getSelectedValue();
+	}
+	
 	public void initialList(List<T> items) {
 		selectedItemsModel = new DefaultListModel<T>();
 		allItemsModel = new DefaultListModel<T>();
@@ -79,6 +82,20 @@ public class SelectList<T> extends JPanel {
 		}
 		allItems.setModel(allItemsModel);
 		selectedItems.setModel(selectedItemsModel);
+	}
+
+	public SelectList(List<T> items, ActionListener listener) {
+		init(items);
+		add.addActionListener(listener);
+		remove.addActionListener(listener);
+
+	}
+
+	/**
+	 * Create the panel.
+	 */
+	public SelectList(List<T> items) {
+		init(items);
 	}
 
 	public List<T> getSelectedItems() {
@@ -108,7 +125,7 @@ public class SelectList<T> extends JPanel {
 		int index = this.selectedItems.getSelectedIndex();
 		T rightSelected = this.selectedItemsModel.getElementAt(index);
 		this.selectedItemsModel.remove(index);
-		if (index < this.selectedItemsModel.getSize() )
+		if (index < this.selectedItemsModel.getSize())
 			index = index + 1;
 		this.selectedItemsModel.add(index, rightSelected);
 

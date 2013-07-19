@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -27,6 +28,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.Sizes;
 
+import edu.sharif.ce.ood.taghi.namayeshgah.controller.CalendarTool;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.LogCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.ProcessCatalog;
 import edu.sharif.ce.ood.taghi.namayeshgah.controller.ShowPlaceCatalog;
@@ -37,8 +39,10 @@ import edu.sharif.ce.ood.taghi.namayeshgah.ui.BaseUI;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.Home;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelecTshowPlaceCombo;
 import edu.sharif.ce.ood.taghi.namayeshgah.ui.SelectList;
+import javax.swing.JTextField;
 
-public class ManageProcess extends BaseUI implements ItemListener {
+public class ManageProcess extends BaseUI implements ItemListener,
+		ActionListener {
 
 	// private JPanel contentPane;
 
@@ -65,6 +69,12 @@ public class ManageProcess extends BaseUI implements ItemListener {
 
 	private SelectList<ProcessBean> selectList;
 	private JList<String> historylist;
+	private JTextField yearText;
+	private JTextField monthText;
+	private JTextField dayText;
+	private JTextField yearText2;
+	private JTextField monthText2;
+	private JTextField dayText2;
 
 	/**
 	 * Create the frame.
@@ -93,7 +103,7 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		panel_2.setLayout(new FormLayout(new ColumnSpec[] {
 				FormFactory.DEFAULT_COLSPEC, ColumnSpec.decode("default:grow"),
 				FormFactory.DEFAULT_COLSPEC, }, new RowSpec[] {
-				FormFactory.GLUE_ROWSPEC, RowSpec.decode("20dlu"), }));
+				FormFactory.GLUE_ROWSPEC, RowSpec.decode("20dlu:grow"), }));
 
 		historylist = new JList<String>();
 		panel_2.add(historylist, "2, 1, fill, fill");
@@ -101,6 +111,50 @@ public class ManageProcess extends BaseUI implements ItemListener {
 
 		JLabel label_1 = new JLabel("تاریخچه");
 		panel_2.add(label_1, "3, 1, default, top");
+
+		JPanel panel_4 = new JPanel();
+		panel_2.add(panel_4, "2, 2, fill, fill");
+		panel_4.setLayout(new MigLayout("", "[grow][grow][grow][][grow]",
+				"[][][]"));
+
+		JLabel label_3 = new JLabel("سال");
+		panel_4.add(label_3, "cell 0 0");
+
+		JLabel label_4 = new JLabel("ماه");
+		panel_4.add(label_4, "cell 1 0");
+
+		JLabel label_5 = new JLabel("روز");
+		panel_4.add(label_5, "cell 2 0");
+
+		yearText = new JTextField();
+		yearText.setColumns(10);
+		panel_4.add(yearText, "cell 0 1,growx");
+
+		monthText = new JTextField();
+		monthText.setColumns(10);
+		panel_4.add(monthText, "cell 1 1,growx");
+
+		dayText = new JTextField();
+		dayText.setColumns(10);
+		panel_4.add(dayText, "cell 2 1,growx");
+
+		JLabel label_2 = new JLabel("تاریخ شروع");
+		panel_4.add(label_2, "cell 3 1");
+
+		yearText2 = new JTextField();
+		yearText2.setColumns(10);
+		panel_4.add(yearText2, "cell 0 2,growx");
+
+		monthText2 = new JTextField();
+		monthText2.setColumns(10);
+		panel_4.add(monthText2, "cell 1 2,growx");
+
+		dayText2 = new JTextField();
+		dayText2.setColumns(10);
+		panel_4.add(dayText2, "cell 2 2");
+
+		JLabel label_6 = new JLabel("تاریخ پایان");
+		panel_4.add(label_6, "cell 3 2");
 
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, "2, 3, fill, fill");
@@ -136,7 +190,7 @@ public class ManageProcess extends BaseUI implements ItemListener {
 		panel_3.add(button_2);
 
 		selectList = new SelectList<ProcessBean>(ProcessCatalog.getInstance()
-				.getAllProcesses());
+				.getAllProcesses(), this);
 		panel.add(selectList, "2, 4, fill, fill");
 
 		JButton button = new JButton("تایید");
@@ -189,4 +243,33 @@ public class ManageProcess extends BaseUI implements ItemListener {
 
 	}
 
+	@SuppressWarnings("deprecation")
+	public void actionPerformed(ActionEvent e) {
+		JButton button = ((JButton) e.getSource());
+		if (button.getName().equals("add")) {
+			System.out.println("Manage process/ add");
+			CalendarTool ct = new CalendarTool();
+			ct.setIranianDate(Integer.parseInt(yearText.getText()),
+					Integer.parseInt(monthText.getText()),
+					Integer.parseInt(dayText.getText()));
+			Date startDate = new Date(ct.getGregorianYear() - 1900,
+					ct.getGregorianMonth() - 1, ct.getGregorianDay() - 1);
+
+			ct.setIranianDate(Integer.parseInt(yearText2.getText()),
+					Integer.parseInt(monthText2.getText()),
+					Integer.parseInt(dayText2.getText()));
+
+			Date endDate = new Date(ct.getGregorianYear() - 1900,
+					ct.getGregorianMonth() - 1, ct.getGregorianDay() - 1);
+
+			selectList.getSelectedFromAllItems().setStartDate(startDate);
+			selectList.getSelectedFromAllItems().setEndDate(endDate);
+			System.out.println("Manage process/ +date:" + startDate
+					+ "  -----   " + endDate);
+		} else if (button.getName().equals("remove")) {
+			System.out.println("Manage process/ remove");
+
+		}
+
+	}
 }

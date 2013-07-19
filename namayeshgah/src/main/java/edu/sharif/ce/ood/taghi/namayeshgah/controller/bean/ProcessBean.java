@@ -1,5 +1,7 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.controller.bean;
 
+import java.util.Date;
+
 import edu.sharif.ce.ood.taghi.namayeshgah.model.entity.ProcessEntity;
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ProcessStatus;
 
@@ -10,12 +12,43 @@ public class ProcessBean {
 	private String description;
 	private ProcessStatus processStatus;
 
+	private Date startDate;
+	private Date endDate;
+
 	public ProcessBean(ProcessEntity processEntity) {
 		this.id = processEntity.getId();
 		this.name = processEntity.getName();
 		this.description = processEntity.getDescription();
 		this.processStatus = processEntity.getProcessStatus();
+		this.startDate = processEntity.getStartDate();
+		this.endDate = processEntity.getEndDate();
 	}
+
+	
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
 
 	public Integer getId() {
 		return id;

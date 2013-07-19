@@ -66,8 +66,11 @@ public class ShowPlaceDao extends GenericHibernateDAO<ShowPlaceEntity, Integer> 
 	public void setProcessesById(Integer id, List<ProcessBean> processes) {
 		ArrayList<ProcessEntity> processesEntities = new ArrayList<ProcessEntity>();
 		for (ProcessBean process : processes) {
-			processesEntities.add(FactoryDAO.getInstance().getProcessDao()
-					.findById(process.getId(), false));
+			ProcessEntity entity = FactoryDAO.getInstance().getProcessDao()
+					.findById(process.getId(), false);
+			entity.setStartDate(process.getStartDate());
+			entity.setEndDate(process.getEndDate());
+			processesEntities.add(entity);
 		}
 		ShowPlaceEntity showPlace = FactoryDAO.getInstance().getShowPlaceDao()
 				.findById(id, false);

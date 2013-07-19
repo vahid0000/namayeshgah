@@ -231,7 +231,8 @@ public class BaseUI extends JFrame {
 		button[14] = new JButton("فرآیند");
 		button[14].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFrame frame = new ImplementationProcess();
+				JFrame frame = new ImplementationProcess(ShowPlaceCatalog
+						.getInstance().getCurrentShowPlace());
 				frame.setVisible(true);
 				BaseUI.this.dispose();
 			}
@@ -439,7 +440,7 @@ public class BaseUI extends JFrame {
 		System.out.println("BaseUI/setButtons rolesSize:" + roles.size());
 
 		for (RoleBean butId : roles) {
-//			System.out.println("buuuuuuuuuuuuuuuut:" + butId.getNumber());
+			// System.out.println("buuuuuuuuuuuuuuuut:" + butId.getNumber());
 			panel.add(button[butId.getNumber()]);
 		}
 		panel.setVisible(true);

@@ -1,6 +1,7 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.controller.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -63,19 +64,13 @@ public class ShowPlaceBean {
 
 	}
 
-	
-	
 	public String getMap() {
 		return map;
 	}
 
-
-
 	public void setMap(String map) {
 		this.map = map;
 	}
-
-
 
 	public ShowPlaceBean(String name) {
 		super();
@@ -196,6 +191,40 @@ public class ShowPlaceBean {
 				deliquents.add(booth);
 		}
 		return deliquents;
+	}
+
+	public List<ProcessBean> getNowProcesses() {
+		Date nowDate = new Date();
+		ArrayList<ProcessBean> nowProcesses = new ArrayList<ProcessBean>();
+		for (ProcessBean process : this.processes) {
+
+			if (process.getStartDate().before(nowDate)
+					&& process.getEndDate().after(nowDate))
+				nowProcesses.add(process);
+		}
+		return nowProcesses;
+	}
+
+	public List<ProcessBean> getPastProcesses() {
+		Date nowDate = new Date();
+		ArrayList<ProcessBean> nowProcesses = new ArrayList<ProcessBean>();
+		for (ProcessBean process : this.processes) {
+
+			if (process.getEndDate().before(nowDate))
+				nowProcesses.add(process);
+		}
+		return nowProcesses;
+	}
+
+	public List<ProcessBean> getFutureProcesses() {
+		Date nowDate = new Date();
+		ArrayList<ProcessBean> nowProcesses = new ArrayList<ProcessBean>();
+		for (ProcessBean process : this.processes) {
+
+			if (process.getStartDate().after(nowDate))
+				nowProcesses.add(process);
+		}
+		return nowProcesses;
 	}
 
 }

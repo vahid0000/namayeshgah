@@ -1,5 +1,7 @@
 package edu.sharif.ce.ood.taghi.namayeshgah.model.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.ProcessStatus;
-import edu.sharif.ce.ood.taghi.namayeshgah.model.enums.RequestStatus;
 
 @Entity(name = "process")
 public class ProcessEntity extends BaseEntity<Integer> {
@@ -24,6 +25,12 @@ public class ProcessEntity extends BaseEntity<Integer> {
 
 	@Column(name = "processStatus")
 	private ProcessStatus processStatus;
+
+	@Column(name = "startDate")
+	private Date startDate;
+
+	@Column(name = "endtDate")
+	private Date endDate;
 
 	public String getName() {
 		return name;
@@ -53,6 +60,24 @@ public class ProcessEntity extends BaseEntity<Integer> {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return this.name;
+	}
+	
+	
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	@Override
